@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/BushJiang/PicGo_img/202207262148044-实训基地.png">
 <meta property="article:published_time" content="2018-10-17T01:05:23.000Z">
-<meta property="article:modified_time" content="2022-07-26T14:20:19.273Z">
+<meta property="article:modified_time" content="2022-07-26T14:53:38.374Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/BushJiang/PicGo_img/202207262148044-实训基地.png">
@@ -294,7 +294,10 @@
 <h2 id="实训内容"><a href="#实训内容" class="headerlink" title="实训内容"></a>实训内容</h2><p>实训的最终目的是实现红绿灯的启停。具体来说，车辆在进入无人驾驶模式后，沿着录制的轨迹自动行驶，当行驶到红绿灯前方时，对其进行识别。如果是绿灯则继续行驶，是红灯则需要在规定的范围内停车。当绿灯亮起时，车辆再次启动。</p>
 <p>说起来容易做起来难，无人驾驶是一个系统工程，想用实现这个看似简单的功能，需要的知识着实不少。下面就来说说我们小队是如何做的。顺便说一句，我们的队名是“红鲤鱼与绿鲤鱼与驴”，考虑到我是南方人实在分不清“l”和“n”的发言，简称“鲤鱼队”。</p>
 <p>首先，在名古屋大学教授Alex和优达学城导师Aaron的指导下，我们学习了Autoware的基础知识，完成了GPU版Tensorflow、ROS和Autoware的安装。Autoware是一款连接代码和硬件的软件，类似于百度的Apollo.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/BushJiang/PicGo_img/202207262125622-autoware%E7%95%8C%E9%9D%A2.png" srcset="/img/loading.gif" lazyload><br><em>autoware界面</em></p>
+<p><img src="https://cdn.jsdelivr.net/gh/BushJiang/PicGo_img/202207262125622-autoware%E7%95%8C%E9%9D%A2.png" srcset="/img/loading.gif" lazyload></p>
+<p><em>autoware界面</em></p>
+<p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202207262252049-autoware%E7%95%8C%E9%9D%A2.png" srcset="/img/loading.gif" lazyload></p>
+<p><em>autoware界面2</em></p>
 <p>然后，把激光雷达和摄像头连接到Autoware，通过摄像头采集试验场地的环境数据，用来训练红绿灯检测器。<br><img src="https://cdn.jsdelivr.net/gh/BushJiang/PicGo_img/202207262125134-%E9%80%9A%E8%BF%87%E6%89%8B%E6%9C%BA%E8%A7%82%E5%AF%9F%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E5%8F%91%E5%87%BA%E7%9A%84%E6%BF%80%E5%85%89.png" srcset="/img/loading.gif" lazyload><br><em>通过手机观察激光雷达发出的激光</em></p>
 <p>接下来是制作高清地图。开车绕行试验场地，通过车载激光雷达（Velodyne提供）生成点云，再通过Autoware制作成高清地图。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/BushJiang/PicGo_img/202207262127694-%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E6%A3%80%E6%B5%8B%E5%88%B0%E7%9A%84%E8%AF%95%E9%AA%8C%E5%9C%BA%E5%9C%B0.png" srcset="/img/loading.gif" lazyload></p>
