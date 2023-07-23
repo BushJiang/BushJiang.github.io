@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>OptiStruct报错-ERROR 1000</title>
+    <link href="/2023/07/23/OptiStruct%E6%8A%A5%E9%94%99-ERROR%201000/"/>
+    <url>/2023/07/23/OptiStruct%E6%8A%A5%E9%94%99-ERROR%201000/</url>
+    
+    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>ERROR # 1000 *** in the input data: Incorrect data in field # 3.<br>Expected INT &gt; 0 or blank, found INTEGER (0).</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>卡片某个字段存在不正确的数据。本例中，第三字段数据格式错误，应该大于0或者为空，但是为0。</p><p>比如，没有给components赋予属性，因为CQUAD4卡片的第三字段<code>PID</code>是属性的id。</p><p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202307231608482.png"></p><p>或者没有给属性赋予材料，因为属性的第三个字段<code>MID1</code>是材料的id。<br><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202307231608495.png"></p><p>遇到此类问题，可以查看out文件，发现错误信息上面还有一段文字：<code>This line was interpreted as:283:PSHELL, 1, 0, 1.0, 0, , 0, , 0.0 </code>，这段文字给出了FEM文件283行的数据信息（自由格式），第三个字段为0，也就是PSHELL的MID1字段为0，没有赋予材料。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>为缺少参数的字段输入正确的参数。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>OptiStruct</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hyperworks官方学习资料介绍</title>
     <link href="/2020/10/05/Hyperworks%E5%AE%98%E6%96%B9%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E4%BB%8B%E7%BB%8D/"/>
     <url>/2020/10/05/Hyperworks%E5%AE%98%E6%96%B9%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E4%BB%8B%E7%BB%8D/</url>
