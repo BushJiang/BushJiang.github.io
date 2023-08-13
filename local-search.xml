@@ -4,9 +4,9 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2023/08/13/test/"/>
-    <url>/2023/08/13/test/</url>
+    <title>OptiStruct的ERROR和WARNING汇总</title>
+    <link href="/2023/08/13/OptiStruct%E7%9A%84ERROR%E5%92%8CWARNING%E6%B1%87%E6%80%BB/"/>
+    <url>/2023/08/13/OptiStruct%E7%9A%84ERROR%E5%92%8CWARNING%E6%B1%87%E6%80%BB/</url>
     
     <content type="html"><![CDATA[]]></content>
     
@@ -17,16 +17,6 @@
       
       <category>OptiStruct</category>
       
-      <category>二次开发</category>
-      
-      <category>Hypermesh</category>
-      
-      <category>有限元</category>
-      
-      <category>数值计算</category>
-      
-      <category>力学</category>
-      
     </categories>
     
     
@@ -35,25 +25,6 @@
       <tag>ERROR信息</tag>
       
       <tag>WARNING信息</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>OptiStruct的ERROR和WARNING汇总</title>
-    <link href="/2023/08/13/OptiStruct%E7%9A%84ERROR%E5%92%8CWARNING%E6%B1%87%E6%80%BB/"/>
-    <url>/2023/08/13/OptiStruct%E7%9A%84ERROR%E5%92%8CWARNING%E6%B1%87%E6%80%BB/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>OptiStruct</tag>
       
     </tags>
     
