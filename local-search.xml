@@ -4,6 +4,87 @@
   
   
   <entry>
+    <title>test</title>
+    <link href="/2023/08/13/test/"/>
+    <url>/2023/08/13/test/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>CAE软件</category>
+      
+      <category>Hypermesh</category>
+      
+      <category>OptiStruct</category>
+      
+      <category>HyperView</category>
+      
+      <category>LS-dyna</category>
+      
+      <category>二次开发</category>
+      
+      <category>Hypermesh</category>
+      
+      <category>HyperView</category>
+      
+      <category>有限元</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ERROR信息</tag>
+      
+      <tag>WARNING信息</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>OptiStruct的ERROR和WARNING汇总</title>
+    <link href="/2023/08/13/OptiStruct%E7%9A%84ERROR%E5%92%8CWARNING%E6%B1%87%E6%80%BB/"/>
+    <url>/2023/08/13/OptiStruct%E7%9A%84ERROR%E5%92%8CWARNING%E6%B1%87%E6%80%BB/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>OptiStruct</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>OptiStruct报错-ERROR 179</title>
+    <link href="/2023/08/13/OptiStruct%E6%8A%A5%E9%94%99-ERROR-179/"/>
+    <url>/2023/08/13/OptiStruct%E6%8A%A5%E9%94%99-ERROR-179/</url>
+    
+    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p> *** ERROR # 179 ***<br>The dependent d.o.f.s of multi-point constraints produces a singular matrix. This may be caused by a circular dependency in which a d.o.f. is Indirectly dependent upon itself.</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>多个 rigid 单元的从节点和主节点首尾相连，形成闭环。比如，rigid A 的从节点和 rigid B 的主节点相连，然后 rigid B 的从节点和 rigid A 的主节点相连。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>删除某个 rigid 单元，断开闭环。</p><p>可以通过 Tool——check elems——1-d——rigid loops 检查该错误。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>OptiStruct</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>OptiStruct报错-ERROR 173</title>
     <link href="/2023/07/30/OptiStruct%E6%8A%A5%E9%94%99-ERROR-173/"/>
     <url>/2023/07/30/OptiStruct%E6%8A%A5%E9%94%99-ERROR-173/</url>
