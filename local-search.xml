@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>OptiStruct报错-ERROR 329</title>
+    <title>OptiStruct报错-ERROR 329、ERROR 330和ERROR 331</title>
     <link href="/2023/08/13/OptiStruct%E6%8A%A5%E9%94%99-ERROR-329/"/>
     <url>/2023/08/13/OptiStruct%E6%8A%A5%E9%94%99-ERROR-329/</url>
     
-    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>*** ERROR #329 ***<br>RBE 3 element 309 cannot support a x-moment - check element data.</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>Rbe3 单元的主节点都分布在 x 轴上，导致 x 方向的力矩没有被约束。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>改变主节点都在一条直线上的分布形式。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>ERROR #329 RBE 3 element 309 cannot support a x-moment - check element data.</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>Rbe3 单元的主节点都分布在 x 轴上，导致 x 方向的力矩没有被约束。另外，出现ERROR 330和ERROR 331分别是因为主节点分布在 y 轴和 z 轴上。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>改变主节点都在一条直线上的分布形式。</p>]]></content>
     
     
     <categories>
@@ -35,7 +35,7 @@
     <link href="/2023/08/13/%E6%96%B0%E8%AF%BB%E8%80%85%E5%AF%BC%E8%88%AA/"/>
     <url>/2023/08/13/%E6%96%B0%E8%AF%BB%E8%80%85%E5%AF%BC%E8%88%AA/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>作为一名CAE工程师，我的博文多是围绕CAE写作，如果你是新读者，不妨听我介绍一番。</p>]]></content>
     
     
     
@@ -77,7 +77,7 @@
     <link href="/2023/08/13/OptiStruct%E6%8A%A5%E9%94%99-ERROR-179/"/>
     <url>/2023/08/13/OptiStruct%E6%8A%A5%E9%94%99-ERROR-179/</url>
     
-    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p> *** ERROR # 179 ***<br>The dependent d.o.f.s of multi-point constraints produces a singular matrix. This may be caused by a circular dependency in which a d.o.f. is Indirectly dependent upon itself.</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>多个 rigid 单元的从节点和主节点首尾相连，形成闭环。比如，rigid A 的从节点和 rigid B 的主节点相连，然后 rigid B 的从节点和 rigid A 的主节点相连。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>删除某个 rigid 单元，断开闭环。</p><p>可以通过 Tool——check elems——1-d——rigid loops 检查该错误。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>ERROR # 179 The dependent d.o.f.s of multi-point constraints produces a singular matrix. This may be caused by a circular dependency in which a d.o.f. is Indirectly dependent upon itself.</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>多个 rigid 单元的从节点和主节点首尾相连，形成闭环。比如，rigid A 的从节点和 rigid B 的主节点相连，然后 rigid B 的从节点和 rigid A 的主节点相连。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>删除某个 rigid 单元，断开闭环。</p><p>可以通过 Tool——check elems——1-d——rigid loops 检查该错误。</p>]]></content>
     
     
     <categories>
@@ -131,7 +131,7 @@
     <link href="/2023/07/23/OptiStruct%E6%8A%A5%E9%94%99-ERROR%201000/"/>
     <url>/2023/07/23/OptiStruct%E6%8A%A5%E9%94%99-ERROR%201000/</url>
     
-    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>ERROR # 1000 *** in the input data: Incorrect data in field # 3.<br>Expected INT &gt; 0 or blank, found INTEGER (0).</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>卡片某个字段存在不正确的数据。本例中，第三字段数据格式错误，应该大于0或者为空，但是为0。</p><p>比如，没有给components赋予属性，因为CQUAD4卡片的第三字段<code>PID</code>是属性的id。</p><p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202307231608482.png"></p><p>或者没有给属性赋予材料，因为属性的第三个字段<code>MID1</code>是材料的id。<br><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202307231608495.png"></p><p>遇到此类问题，可以查看out文件，发现错误信息上面还有一段文字：<code>This line was interpreted as:283:PSHELL, 1, 0, 1.0, 0, , 0, , 0.0 </code>，这段文字给出了FEM文件283行的数据信息（自由格式），第三个字段为0，也就是PSHELL的MID1字段为0，没有赋予材料。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>为缺少参数的字段输入正确的参数。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>ERROR # 1000  in the input data: Incorrect data in field # 3.<br>Expected INT &gt; 0 or blank, found INTEGER (0).</p><h2 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h2><p>卡片某个字段存在不正确的数据。本例中，第三字段数据格式错误，应该大于0或者为空，但是为0。</p><p>比如，没有给components赋予属性，因为CQUAD4卡片的第三字段<code>PID</code>是属性的id。</p><p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202307231608482.png"></p><p>或者没有给属性赋予材料，因为属性的第三个字段<code>MID1</code>是材料的id。<br><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202307231608495.png"></p><p>遇到此类问题，可以查看out文件，发现错误信息上面还有一段文字：<code>This line was interpreted as:283:PSHELL, 1, 0, 1.0, 0, , 0, , 0.0 </code>，这段文字给出了FEM文件283行的数据信息（自由格式），第三个字段为0，也就是PSHELL的MID1字段为0，没有赋予材料。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>为缺少参数的字段输入正确的参数。</p>]]></content>
     
     
     <categories>
