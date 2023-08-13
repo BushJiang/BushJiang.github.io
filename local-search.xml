@@ -35,8 +35,14 @@
     <link href="/2023/08/13/%E5%86%99%E7%BB%99%E6%96%B0%E8%AF%BB%E8%80%85%E7%9A%84%E5%AF%BC%E8%88%AA/"/>
     <url>/2023/08/13/%E5%86%99%E7%BB%99%E6%96%B0%E8%AF%BB%E8%80%85%E7%9A%84%E5%AF%BC%E8%88%AA/</url>
     
-    <content type="html"><![CDATA[<p>作为一名CAE工程师，我的博文多是围绕CAE写作，如果你是新读者，不妨听我介绍一番。博文分成CAE软件、二次开发、CAE原理和杂谈4个部分。</p><p>“CAE软件”包括前处理软件Hypermesh、后处理软件HyperView，以及求解器OptiStruct和LS-dyna。不会涉及软件基础操作，更多关注软件的底层内容，比如fem文件构成、bulk data、常见报错和警告等等。</p><p>“二次开发”包括Hypermesh和HyperView的二次开发，不涉及二次开发教程，而是分享脚本功能和实现的思路。可能会公开部分通用脚本。</p><p>“CAE原理”则是介绍CAE软件的工作原理，比如有限单元法、数值计算等内容。</p><p>“杂谈”会围绕CAE岗位介绍相关知识和学习经验。</p><p>各部分可能会有更细的划分，会根据具体内容通过标签标注，不再一一说明。</p>]]></content>
+    <content type="html"><![CDATA[<p>作为一名CAE工程师，我的博文多是围绕CAE写作，如果你是新读者，不妨听我介绍一番。博文分成CAE软件、二次开发、CAE原理和杂谈4个部分。</p><p>“CAE软件”包括前处理软件Hypermesh、后处理软件HyperView，以及求解器OptiStruct和LS-dyna。不会涉及软件基础操作，更多关注软件的底层内容，比如fem文件构成、bulk data、常见报错和警告等等。</p><p>“二次开发”包括Hypermesh和HyperView的二次开发，不涉及二次开发教程，而是分享脚本功能和实现的思路。可能会公开部分通用脚本。</p><p>“CAE原理”则是介绍CAE软件的工作原理，比如有限单元法、数值计算等内容。</p><p>“学习资料”分享CAE相关学习资料。</p><p>“杂谈”会围绕CAE岗位介绍相关知识和学习经验，以及博文汇总。</p><p>各部分可能会有更细的划分，会根据具体内容通过标签标注，不再一一说明。</p>]]></content>
     
+    
+    <categories>
+      
+      <category>杂谈</category>
+      
+    </categories>
     
     
   </entry>
@@ -136,7 +142,7 @@
       
       <category>CAE软件</category>
       
-      <category>Hypermesh</category>
+      <category>学习资料</category>
       
     </categories>
     
