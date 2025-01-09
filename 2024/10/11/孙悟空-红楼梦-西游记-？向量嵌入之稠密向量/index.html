@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile_picture.png">
+  <link rel="icon" href="/img/profile_picture.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="爱写作的CAE工程师">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一起来开个脑洞，如果孙悟空穿越到红楼梦的世界，他会成为谁？贾宝玉，林黛玉，还是薛宝钗？这看似一道文学题，但是我们不妨用数学方法来求解：孙悟空 + 红楼梦 - 西游记 &#x3D; ？ 文字也能做运算？当然不行，但是把文字转换成数字之后，就可以用来计算了。而这个过程，叫做 “向量嵌入”。为什么要做向量嵌入？因为具有语义意义的数据，比如文本或者图像，人可以分辨相关程度，但是无法量化，更不能计算。比如，对于一组词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="孙悟空 + 红楼梦 - 西游记 &#x3D; ？向量嵌入之稠密向量">
+<meta property="og:url" content="http://example.com/2024/10/11/%E5%AD%99%E6%82%9F%E7%A9%BA-%E7%BA%A2%E6%A5%BC%E6%A2%A6-%E8%A5%BF%E6%B8%B8%E8%AE%B0-%EF%BC%9F%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E4%B9%8B%E7%A8%A0%E5%AF%86%E5%90%91%E9%87%8F/index.html">
+<meta property="og:site_name" content="江浩探索AI大陆">
+<meta property="og:description" content="一起来开个脑洞，如果孙悟空穿越到红楼梦的世界，他会成为谁？贾宝玉，林黛玉，还是薛宝钗？这看似一道文学题，但是我们不妨用数学方法来求解：孙悟空 + 红楼梦 - 西游记 &#x3D; ？ 文字也能做运算？当然不行，但是把文字转换成数字之后，就可以用来计算了。而这个过程，叫做 “向量嵌入”。为什么要做向量嵌入？因为具有语义意义的数据，比如文本或者图像，人可以分辨相关程度，但是无法量化，更不能计算。比如，对于一组词">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161007773.png">
+<meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161023693.png">
+<meta property="article:published_time" content="2024-10-11T15:00:08.000Z">
+<meta property="article:modified_time" content="2025-01-09T15:02:15.897Z">
+<meta property="article:author" content="江浩">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161007773.png">
+  
+  
+  
+  <title>孙悟空 + 红楼梦 - 西游记 = ？向量嵌入之稠密向量 - 江浩探索AI大陆</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>江浩探索AI大陆</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">孙悟空 + 红楼梦 - 西游记 = ？向量嵌入之稠密向量</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        爱写作的CAE工程师
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-11 23:00" pubdate>
+          2024年10月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">孙悟空 + 红楼梦 - 西游记 = ？向量嵌入之稠密向量</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>一起来开个脑洞，如果孙悟空穿越到红楼梦的世界，他会成为谁？贾宝玉，林黛玉，还是薛宝钗？这看似一道文学题，但是我们不妨用数学方法来求解：<code>孙悟空 + 红楼梦 - 西游记 = ？</code></p>
+<p>文字也能做运算？当然不行，但是把文字转换成数字之后，就可以用来计算了。而这个过程，叫做 “向量嵌入”。为什么要做向量嵌入？因为具有语义意义的数据，比如文本或者图像，人可以分辨相关程度，但是无法量化，更不能计算。比如，对于一组词“孙悟空、猪八戒、沙僧、西瓜、苹果、香蕉“，我会把“孙悟空、猪八戒、沙僧”分成一组，“西瓜、苹果、香蕉”分成另一组。但是，如果进一步提问，“孙悟空”是和“猪八戒”更相关，还是和“沙僧”更相关呢？这很难回答。</p>
+<p>而把这些信息转换成向量后，相关程度就可以通过它们在向量空间中的距离量化。甚至于，我们可以做 <code>孙悟空 + 红楼梦 - 西游记 = ？</code> 这样的脑洞数学题。</p>
+<p>本文首发于 Zilliz 公众号。文中代码的 Notebook 在<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1VtPt-6Y_hhxKn9uB4AMNFg?pwd=7zv9">这里</a>下载。</p>
+<h2 id="文字是怎么变成向量的"><a href="#文字是怎么变成向量的" class="headerlink" title="文字是怎么变成向量的"></a>文字是怎么变成向量的</h2><p>怎么把文字变成向量呢？首先出现的是词向量，其中的代表是 word2vec 模型。它先准备一张词汇表，给每个词随机赋予一个向量，然后利用大量语料，通过 CBOW（Continuous Bag-of-Words）和 Skip-Gram 两种方法训练模型，不断优化字词的向量。</p>
+<p>CBOW 使用上下文（周围的词）预测目标词<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="严格来说，“目标词”不是单词而是“token”。token 是组成句子的基本单元。对于英文来说，token可以简单理解为单词，还可能是子词（subword）或者标点符号，比如“unhappiness” 可能会被分割成“un”和“happiness“。对于汉字来说，则是字、词或者短语，汉字不会像英文单词那样被分割。">[1]</span></a></sup>，而 Skip-Gram 则相反，通过目标词预测它的上下文。举个例子，对于“我爱吃冰淇淋”这个句子，CBOW方法已知上下文“我爱“和”冰淇淋”，计算出中间词的概率，比如，“吃”的概率是90%，“喝”的概率是7%，“玩”的概率是3%。然后再使用损失函数预测概率与实际概率的差异，最后通过反向传播算法，调整词向量模型的参数，使得损失函数最小化。训练词向量模型的最终目的，是捕捉词汇之间的语义关系，使得相关的词在向量空间中距离更近。</p>
+<p>打个比方，最初的词向量模型就像一个刚出生的孩子，对字词的理解是模糊的。父母在各种场景下和孩子说话，时不时考一考孩子，相当于用语料库训练模型。只不过训练模型的过程是不断迭代神经网络的参数，而教孩子说话，则是改变大脑皮层中神经元突触的连接。</p>
+<p>比如，父母会在吃饭前跟孩子说：<br>“肚子饿了就要…”<br>“要吃饭。”</p>
+<p>如果答错了，父母会纠正孩子：<br>“吃饭之前要…”<br>“要喝汤。”<br>“不对，吃饭之前要洗手。”</p>
+<p>这就是在调整模型的参数。</p>
+<p>好了，纸上谈兵结束，咱们用代码实际操练一番吧。</p>
+<p>版本说明：<br>Milvus 版本：&gt;&#x3D;2.5.0<br>pymilvus 版本：&gt;&#x3D;2.5.0</p>
+<p>安装依赖：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install gensim scikit-learn transformers matplotlib<br></code></pre></td></tr></table></figure>
+
+<p>从 gensim.models 模块中导入 KeyedVectors 类，它用于存储和操作词向量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> KeyedVectors<br></code></pre></td></tr></table></figure>
+
+<p>在<a target="_blank" rel="noopener" href="https://github.com/Embedding/Chinese-Word-Vectors/blob/master/README_zh.md">这里</a>下载中文词向量模型 <code>Literature 文学作品</code>，并且加载该模型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 加载中文词向量模型</span><br>word_vectors = KeyedVectors.load_word2vec_format(<span class="hljs-string">&#x27;sgns.literature.word&#x27;</span>, binary=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+
+<p>词向量模型其实就像一本字典。在字典里，每个字对应的是一条解释，在词向量模型中，每个词对应的是一个向量。</p>
+<p>我们使用的词向量模型是300维的，数量太多，可以只显示前4个维度的数值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;孙悟空&#x27;的向量的前四个维度：<span class="hljs-subst">&#123;word_vectors[<span class="hljs-string">&#x27;孙悟空&#x27;</span>].tolist()[:<span class="hljs-number">4</span>]&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#x27;孙悟空&#x27;的向量的前四个维度：[-0.09262000024318695, -0.034056998789310455, -0.16306699812412262, -0.05771299824118614]<br></code></pre></td></tr></table></figure>
+
+<h2 id="语义更近，距离更近"><a href="#语义更近，距离更近" class="headerlink" title="语义更近，距离更近"></a>语义更近，距离更近</h2><p>前面我们提出了疑问，“孙悟空”是和“猪八戒”更相关，还是和“沙僧”更相关呢？在 [[01-如何假装文艺青年，怎么把大白话“变成”古诗词？]] 这篇文章中，我们使用内积 <code>IP</code> 计算两个向量的距离，这里我们使用余弦相似度来计算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;孙悟空&#x27;和&#x27;猪八戒&#x27;向量的余弦相似度是：<span class="hljs-subst">&#123;word_vectors.similarity(<span class="hljs-string">&#x27;孙悟空&#x27;</span>, <span class="hljs-string">&#x27;猪八戒&#x27;</span>):<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;孙悟空&#x27;和&#x27;沙僧&#x27;向量的余弦相似度是：<span class="hljs-subst">&#123;word_vectors.similarity(<span class="hljs-string">&#x27;孙悟空&#x27;</span>, <span class="hljs-string">&#x27;沙僧&#x27;</span>):<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>返回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#x27;孙悟空&#x27;和&#x27;猪八戒&#x27;向量的余弦相似度是：0.60<br>&#x27;孙悟空&#x27;和&#x27;沙僧&#x27;向量的余弦相似度是：0.59<br></code></pre></td></tr></table></figure>
+
+<p>看来，孙悟空还是和猪八戒更相关。但是我们还不满足，我们还想知道，和孙悟空最相关的是谁。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 查找与“孙悟空”最相关的4个词</span><br>similar_words = word_vectors.most_similar(<span class="hljs-string">&quot;孙悟空&quot;</span>, topn=<span class="hljs-number">4</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;与&#x27;孙悟空&#x27;最相关的4个词分别是：&quot;</span>)<br><span class="hljs-keyword">for</span> word, similarity <span class="hljs-keyword">in</span> similar_words:<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;word&#125;</span>， 余弦相似度为：<span class="hljs-subst">&#123;similarity:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>返回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">与&#x27;孙悟空&#x27;最相关的4个词分别是：<br>悟空， 余弦相似度为：0.66<br>唐僧， 余弦相似度为：0.61<br>美猴王， 余弦相似度为：0.61<br>猪八戒， 余弦相似度为：0.60<br></code></pre></td></tr></table></figure>
+
+<p>“孙悟空”和“悟空”、“美猴王”相关，这容易理解。为什么它还和“唐僧”、“猪八戒”相关呢？前面提到的词向量模型的训练原理解释，就是因为在训练文本中，“唐僧”、“猪八戒”经常出现在“孙悟空”这个词的上下文中。这不难理解——在《西游记》中，孙悟空经常救唐僧，还喜欢戏耍八戒。</p>
+<p>前面提到，训练词向量模型是为了让语义相关的词，在向量空间中距离更近。那么，我们可以测试一下，给出四组语义相近的词，考一考词向量模型，看它能否识别出来。</p>
+<p>第一组：西游记，三国演义，水浒传，红楼梦<br>第二组：西瓜，苹果，香蕉，梨<br>第三组：长江，黄河</p>
+<p>首先，获取这四组词的词向量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入用于数值计算的库</span><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-comment"># 定义要可视化的单词列表</span><br>words = [<span class="hljs-string">&quot;西游记&quot;</span>, <span class="hljs-string">&quot;三国演义&quot;</span>, <span class="hljs-string">&quot;水浒传&quot;</span>, <span class="hljs-string">&quot;红楼梦&quot;</span>, <br>        <span class="hljs-string">&quot;西瓜&quot;</span>, <span class="hljs-string">&quot;苹果&quot;</span>, <span class="hljs-string">&quot;香蕉&quot;</span>, <span class="hljs-string">&quot;梨&quot;</span>, <br>        <span class="hljs-string">&quot;长江&quot;</span>, <span class="hljs-string">&quot;黄河&quot;</span>]<br><br><span class="hljs-comment"># 使用列表推导式获取每个单词的向量</span><br>vectors = np.array([word_vectors[word] <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> words])<br></code></pre></td></tr></table></figure>
+
+<p>然后，使用 PCA （Principal Component Analysis，组成分分析）把200维的向量降到2维，一个维度作为 x 坐标，另一个维度作为 y 坐标，这样就把高维向量投影到平面了，方便我们在二维图形上显示它们。换句话说，PCA 相当于《三体》中的二向箔，对高维向量实施了降维打击。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入用于降维的PCA类</span><br><span class="hljs-keyword">from</span> sklearn.decomposition <span class="hljs-keyword">import</span> PCA<br><br><span class="hljs-comment"># 创建PCA对象，设置降至2维</span><br>pca = PCA(n_components=<span class="hljs-number">2</span>)<br><br><span class="hljs-comment"># 对词向量实施PCA降维</span><br>vectors_pca = pca.fit_transform(vectors)<br></code></pre></td></tr></table></figure>
+
+<p>最后，在二维图形上显示降维后的向量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入用于绘图的库</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-comment"># 创建一个5x5英寸的图</span><br>fig, axes = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, figsize=(<span class="hljs-number">7</span>, <span class="hljs-number">7</span>))<br><br><span class="hljs-comment"># 设置中文字体</span><br>plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;Heiti TC&#x27;</span>]<br><span class="hljs-comment"># 确保负号能够正确显示</span><br>plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span>  <br><br><span class="hljs-comment"># 使用PCA降维后的前两个维度作为x和y坐标绘制散点图</span><br>axes.scatter(vectors_pca[:, <span class="hljs-number">0</span>], vectors_pca[:, <span class="hljs-number">1</span>])<br><br><span class="hljs-comment"># 为每个点添加文本标注</span><br><span class="hljs-keyword">for</span> i, word <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(words):<br>    <span class="hljs-comment"># 添加注释，设置文本内容、位置、样式等</span><br>    <span class="hljs-comment"># 要显示的文本（单词）</span><br>    axes.annotate(word,<br>                  <span class="hljs-comment"># 点的坐标</span><br>                  (vectors_pca[i, <span class="hljs-number">0</span>], vectors_pca[i, <span class="hljs-number">1</span>]),  <br>                  <span class="hljs-comment"># 文本相对于点的偏移量</span><br>                  xytext=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),  <br>                  <span class="hljs-comment"># 指定偏移量的单位</span><br>                  textcoords=<span class="hljs-string">&#x27;offset points&#x27;</span>,  <br>                  <span class="hljs-comment"># 字体大小</span><br>                  fontsize=<span class="hljs-number">10</span>,  <br>                  <span class="hljs-comment"># 字体粗细</span><br>                  fontweight=<span class="hljs-string">&#x27;bold&#x27;</span>)  <br><br><span class="hljs-comment"># 设置图表标题和字体大小</span><br>axes.set_title(<span class="hljs-string">&#x27;词向量&#x27;</span>, fontsize=<span class="hljs-number">14</span>)<br><br><span class="hljs-comment"># 自动调整子图参数，使之填充整个图像区域</span><br>plt.tight_layout()<br><br><span class="hljs-comment"># 在屏幕上显示图表</span><br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p>从图中可以看出，同一组词的确在图中的距离更近。</p>
+<p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161007773.png" srcset="/img/loading.gif" lazyload alt="600"></p>
+<p>既然可以把高维向量投影到二维，那么是不是也能投影到三维呢？当然可以，那样更酷。你可以在 <a target="_blank" rel="noopener" href="https://projector.tensorflow.org/">TensorFlow Embedding Projector</a> 上尝试下，输入单词，搜索与它最近的几个词，看看它们在三维空间上的位置关系。</p>
+<p>比如，输入 <code>apple</code>，最接近的5个词分别是 <code>OS</code>、<code>macintosh</code>、<code>amiga</code>、<code>ibm</code> 和 <code>microsoft</code>。</p>
+<p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161023693.png" srcset="/img/loading.gif" lazyload alt="600"></p>
+<h2 id="如果孙悟空穿越到红楼梦"><a href="#如果孙悟空穿越到红楼梦" class="headerlink" title="如果孙悟空穿越到红楼梦"></a>如果孙悟空穿越到红楼梦</h2><p>回到我们开篇的问题，把文本向量化后，就可以做运算了。如果孙悟空穿越到红楼梦，我们用下面的数学公式表示：<br><code>孙悟空 + 红楼梦 - 西游记</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">result = word_vectors.most_similar(positive=[<span class="hljs-string">&quot;孙悟空&quot;</span>, <span class="hljs-string">&quot;红楼梦&quot;</span>], negative=[<span class="hljs-string">&quot;西游记&quot;</span>], topn=<span class="hljs-number">4</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;孙悟空 + 红楼梦 - 西游记 = <span class="hljs-subst">&#123;result&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>答案为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">孙悟空 + 红楼梦 - 西游记 = [(&#x27;唐僧&#x27;, 0.4163001477718353), (&#x27;贾宝玉&#x27;, 0.41606390476226807), (&#x27;妙玉&#x27;, 0.39432790875434875), (&#x27;沙和尚&#x27;, 0.3922004997730255)]<br></code></pre></td></tr></table></figure>
+
+<p>你是不是有点惊讶，因为答案中的“唐僧”和“沙和尚”根本就不是《红楼梦》中的人物。这是因为虽然词向量可以反映字词之间的语义相关性，但是它终究是在做数学题，不能像人类一样理解“孙悟空 + 红楼梦 - 西游记”背后的含义。答案中出现“唐僧”和“沙和尚”是因为它们和“孙悟空”更相关，而出现“贾宝玉”和“妙玉”则是因为它们和“红楼梦”更相关。</p>
+<p>不过，这样的测试还蛮有趣的，你也可以多尝试一下，有的结果还蛮符合直觉的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">result = word_vectors.most_similar(positive=[<span class="hljs-string">&quot;牛奶&quot;</span>, <span class="hljs-string">&quot;发酵&quot;</span>], topn=<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;牛奶 + 发酵 = <span class="hljs-subst">&#123;result[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]&#125;</span>&quot;</span>)<br><br>result = word_vectors.most_similar(positive=[<span class="hljs-string">&quot;男人&quot;</span>, <span class="hljs-string">&quot;泰国&quot;</span>], topn=<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;男人 + 泰国 = <span class="hljs-subst">&#123;result[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>计算的结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">牛奶 + 发酵 = 变酸<br>男人 + 泰国 = 女人<br></code></pre></td></tr></table></figure>
+
+<h2 id="待优化！"><a href="#待优化！" class="headerlink" title="待优化！"></a>待优化！</h2><p>尝试把上面的计算题降维，显示在图像上，看看是否满足两个向量相加，等于第三个向量</p>
+<h2 id="一词多义怎么办"><a href="#一词多义怎么办" class="headerlink" title="一词多义怎么办"></a>一词多义怎么办</h2><p>前面说过，词向量模型就像一本字典，每个词对应一个向量，而且是唯一一个向量。但是，在语言中一词多义的现象是非常常见的，比如对于 “苹果” 这个词，既可以指一种水果，也可以指一家电子产品公司。词向量模型在训练 “苹果”这个词的向量时，这两种语义都会考虑到，所以它在向量空间中将位于“水果”和 “电子产品公司”之间。这就好像你3月20号过生日，你同事3月30号过生日，你的领导为了给你们两个人一起过庆祝生日，选择了3月25号——不是任何一个人的生日。</p>
+<p>为了解决一词多义的问题，BERT（Bidirectional Encoder Representations from Transformers）模型诞生了。它是一种基于深度神经网络的预训练语言模型，使用 Transformer 架构，通过自注意力机制同时考虑一个 token 的前后上下文，并且根据上下文环境更新该 token 的向量。</p>
+<p>比如，“苹果”这个目标词的初始向量是从词库中获取的，向量的值是固定的。当注意力模型处理“苹果“这个词时，如果发现上下文中有“手机”一词，会给它分配更多权重，“苹果”的向量会更新，靠近“手机”的方向。如果上下文中有“水果”一词，则会靠近“水果”的方向。</p>
+<p>注意力模型分配权重是有策略的。它只会给上下文中与目标词关系紧密的词分配更多权重。所以，BERT 能够理解目标词与上下文之间的语义关系，根据上下文调整目标词的向量。</p>
+<p>BERT 的预训练分成两种训练方式。第一种训练方式叫做“掩码语言模型（Masked Language Model，MLM）”，和 word2vec 相似，它会随机选择句子中的一些词遮住，根据上下文信息预测这个词，再根据预测结果与真实结果的差异调整参数。第二种训练方式叫做“下一句预测（Next Sentence Prediction，NSP）”，每次输入两个句子，判断第二个句子是否是第一个句子的下一句，然后同样根据结果差异调整参数。</p>
+<p>说了这么多，BERT 模型的效果究竟怎么样？让我们动手试试吧。首先导入 BERT 模型，定义一个获取句子中指定单词的向量的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 从transformers库中导入BertTokenizer类和BertModel类</span><br><span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> BertTokenizer, BertModel<br><br><span class="hljs-comment"># 加载分词器 BertTokenizer</span><br>bert_tokenizer = BertTokenizer.from_pretrained(<span class="hljs-string">&#x27;bert-base-chinese&#x27;</span>)<br><br><span class="hljs-comment"># 加载嵌入模型 BertModel</span><br>bert_model = BertModel.from_pretrained(<span class="hljs-string">&#x27;bert-base-chinese&#x27;</span>)<br><br><span class="hljs-comment"># 使用BERT获取句子中指定单词的向量</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_bert_emb</span>(<span class="hljs-params">sentence, word</span>):<br>    <span class="hljs-comment"># 使用 bert_tokenizer 对句子编码</span><br>    <span class="hljs-built_in">input</span> = bert_tokenizer(sentence, return_tensors=<span class="hljs-string">&#x27;pt&#x27;</span>)<br>    <span class="hljs-comment"># 将编码传递给 BERT 模型，计算所有层的输出</span><br>    output = bert_model(**<span class="hljs-built_in">input</span>)<br>    <span class="hljs-comment"># 获取 BERT 模型最后一层的隐藏状态，它包含了每个单词的嵌入信息</span><br>    last_hidden_states = output.last_hidden_state<br>    <span class="hljs-comment"># 将输入的句子拆分成单词，并生成一个列表</span><br>    word_tokens = bert_tokenizer.tokenize(sentence)<br>    <span class="hljs-comment"># 获取目标单词在列表中的索引位置</span><br>    word_index = word_tokens.index(word)<br>    <span class="hljs-comment"># 从最后一层隐藏状态中提取目标单词的嵌入表示</span><br>    word_emb = last_hidden_states[<span class="hljs-number">0</span>, word_index + <span class="hljs-number">1</span>, :]<br>    <span class="hljs-comment"># 返回目标单词的嵌入表示</span><br>    <span class="hljs-keyword">return</span> word_emb<br></code></pre></td></tr></table></figure>
+
+<p>然后通过 BERT 和词向量模型分别获取两个句子中指定单词的向量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">sentence1 = <span class="hljs-string">&quot;我今天很开心。&quot;</span><br>sentence2 = <span class="hljs-string">&quot;我打开了房门。&quot;</span><br>word = <span class="hljs-string">&quot;开&quot;</span><br><br><span class="hljs-comment"># 使用 BERT 模型获取句子中指定单词的向量</span><br>bert_emb1 = get_bert_emb(sentence1, word).detach().numpy()<br><br>bert_emb2 = get_bert_emb(sentence2, word).detach().numpy()<br><br><span class="hljs-comment"># 使用词向量模型获取指定单词的向量</span><br>word_emb = word_vectors[word]<br></code></pre></td></tr></table></figure>
+
+<p>最后，查看这三个向量的区别。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;在句子 &#x27;<span class="hljs-subst">&#123;sentence1&#125;</span>&#x27; 中，&#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27;的向量的前四个维度：<span class="hljs-subst">&#123;bert_emb1[: <span class="hljs-number">4</span>]&#125;</span>&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;在句子 &#x27;<span class="hljs-subst">&#123;sentence2&#125;</span>&#x27; 中，&#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27;的向量的前四个维度：<span class="hljs-subst">&#123;bert_emb2[: <span class="hljs-number">4</span>]&#125;</span>&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;在词向量模型中， &#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27; 的向量的前四个维度：<span class="hljs-subst">&#123;word_emb[: <span class="hljs-number">4</span>]&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">在句子 &#x27;我今天很开心。&#x27; 中，&#x27;开&#x27;的向量的前四个维度：[1.4325644  0.05137304 1.6045816  0.01002912]<br><br>在句子 &#x27;我打开了房门。&#x27; 中，&#x27;开&#x27;的向量的前四个维度：[ 0.9039772  -0.5877741   0.6639165   0.45880783]<br><br>在词向量模型中， &#x27;开&#x27; 的向量的前四个维度：[ 0.260962  0.040874  0.434256 -0.305888]<br></code></pre></td></tr></table></figure>
+
+<p>BERT 模型果然能够根据上下文调整单词的向量。不妨再比较下余弦相似度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入用于计算余弦相似度的函数</span><br><span class="hljs-keyword">from</span> sklearn.metrics.pairwise <span class="hljs-keyword">import</span> cosine_similarity<br><br><span class="hljs-comment"># 计算两个BERT嵌入向量的余弦相似度</span><br>bert_similarity = cosine_similarity([bert_emb1], [bert_emb2])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;在 &#x27;<span class="hljs-subst">&#123;sentence1&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence2&#125;</span>&#x27; 这两个句子中，两个 &#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27; 的余弦相似度是: <span class="hljs-subst">&#123;bert_similarity:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br><br><span class="hljs-comment"># 计算词向量模型的两个向量之间的余弦相似度</span><br>word_similarity = cosine_similarity([word_emb], [word_emb])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;在词向量中， &#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27; 的余弦相似度是: <span class="hljs-subst">&#123;word_similarity:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>观察结果发现，不同句子中的“开”语义果然不同：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">在 &#x27;我今天很开心。&#x27; 和 &#x27;我打开了房门。&#x27; 这两个句子中，两个 &#x27;开&#x27; 的余弦相似度是: 0.69<br><br>在词向量中， &#x27;开&#x27; 和 &#x27;开&#x27; 的余弦相似度是: 1.00<br></code></pre></td></tr></table></figure>
+
+<h2 id="怎么获得句子的向量"><a href="#怎么获得句子的向量" class="headerlink" title="怎么获得句子的向量"></a>怎么获得句子的向量</h2><p>我们虽然可以通过 BERT 模型获取单词的向量，但是怎么获得句子的向量呢？最简单的方法就是让 BERT 输出句子中每个单词的向量，然后计算向量的平均值。但是，这种不分重点一刀切的效果肯定是不好的，就好像我和千万富豪站在一起，计算我们的平均资产，然后得出结论，这两个人都是千万富翁，这显然不能反映真实情况。更关键的是，使用这种方法，并不能反映句子中词的顺序，而词序对句子语义的影响是非常大的。<br>&#96;&#96;<br>所以，想要反映句子的语义，必须使用专门的句子嵌入模型。它能够直接生成句子级别的嵌入表示，更好地捕捉句子中的上下文信息，从而生成更准确的句子向量。</p>
+<p>句子嵌入模型是怎么训练的？一种常见方法是使用句子对。每次输入两个句子，分别生成它们的嵌入向量，计算相似度，然后与句子对自带的相似度做比较，通过差异调整嵌入模型的参数。</p>
+<p>BGE_M3 模型就是这样一个嵌入模型，而且支持中文。</p>
+<p>真的这么好用？是骡子是马，拉出来遛遛，我们比较一下这两种生成句子嵌入的方法。</p>
+<p>首先，定义一个使用 BERT 模型获取句子向量的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入 PyTorch 库</span><br><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 使用 BERT 模型获取句子的向量</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_bert_sentence_emb</span>(<span class="hljs-params">sentence</span>):<br>    <span class="hljs-comment"># 使用 bert_tokenizer 对句子进行编码，得到 PyTorch 张量格式的输入</span><br>    <span class="hljs-built_in">input</span> = bert_tokenizer(sentence, return_tensors=<span class="hljs-string">&#x27;pt&#x27;</span>)<br>    <span class="hljs-comment"># print(f&quot;input: &#123;input&#125;&quot;)</span><br>    <span class="hljs-comment"># 将编码后的输入传递给 BERT 模型，计算所有层的输出</span><br>    output = bert_model(**<span class="hljs-built_in">input</span>)<br>    <span class="hljs-comment"># print(f&quot;output: &#123;output&#125;&quot;)</span><br>    <span class="hljs-comment"># 获取 BERT 模型最后一层的隐藏状态，它包含了每个单词的嵌入信息</span><br>    last_hidden_states = output.last_hidden_state<br>    <span class="hljs-comment"># 将所有词的向量求平均值，得到句子的表示</span><br>    sentence_emb = torch.mean(last_hidden_states, dim=<span class="hljs-number">1</span>).flatten().tolist()<br>    <span class="hljs-comment"># 返回句子的嵌入表示</span><br>    <span class="hljs-keyword">return</span> sentence_emb<br></code></pre></td></tr></table></figure>
+
+<p>然后，定义一个用 bge_m3模型获取句子向量的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入 bge_m3 模型</span><br><span class="hljs-keyword">from</span> pymilvus.model.hybrid <span class="hljs-keyword">import</span> BGEM3EmbeddingFunction<br><br><span class="hljs-comment"># 使用 bge_m3 模型获取句子的向量</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_bgem3_sentence_emb</span>(<span class="hljs-params">sentence, model_name=<span class="hljs-string">&#x27;BAAI/bge-m3&#x27;</span></span>):<br>    bge_m3_ef = BGEM3EmbeddingFunction(<br>        model_name=model_name,<br>        device=<span class="hljs-string">&#x27;cpu&#x27;</span>,<br>        use_fp16=<span class="hljs-literal">False</span><br>    )<br>    vectors = bge_m3_ef.encode_documents([sentence])<br>    <span class="hljs-keyword">return</span> vectors[<span class="hljs-string">&#x27;dense&#x27;</span>][<span class="hljs-number">0</span>].tolist()<br></code></pre></td></tr></table></figure>
+
+<p>接下来，先计算下 BERT 模型生成的句子向量之间的余弦相似度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">sentence1 = <span class="hljs-string">&quot;我喜欢这部电影！&quot;</span><br>sentence2 = <span class="hljs-string">&quot;这部电影太棒了！&quot;</span><br>sentence3 = <span class="hljs-string">&quot;我讨厌这部电影。&quot;</span><br><br><span class="hljs-comment"># 使用 BERT 模型获取句子的向量</span><br>bert_sentence_emb1 = get_bert_sentence_emb(sentence1)<br>bert_sentence_emb2 = get_bert_sentence_emb(sentence2)<br>bert_sentence_emb3 = get_bert_sentence_emb(sentence3)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;<span class="hljs-subst">&#123;sentence1&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence2&#125;</span>&#x27; 的余弦相似度: <span class="hljs-subst">&#123;cosine_similarity([bert_sentence_emb1], [bert_sentence_emb2])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;<span class="hljs-subst">&#123;sentence1&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence3&#125;</span>&#x27; 的余弦相似度: <span class="hljs-subst">&#123;cosine_similarity([bert_sentence_emb1], [bert_sentence_emb3])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;<span class="hljs-subst">&#123;sentence2&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence3&#125;</span>&#x27; 的余弦相似度: <span class="hljs-subst">&#123;cosine_similarity([bert_sentence_emb2], [bert_sentence_emb3])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#x27;我喜欢这部电影！&#x27; 和 &#x27;这部电影太棒了！&#x27; 的余弦相似度: 0.93<br>&#x27;我喜欢这部电影！&#x27; 和 &#x27;我讨厌这部电影。&#x27; 的余弦相似度: 0.94<br>&#x27;这部电影太棒了！&#x27; 和 &#x27;我讨厌这部电影。&#x27; 的余弦相似度: 0.89<br></code></pre></td></tr></table></figure>
+
+<p>很明显，前两个句子语义相近，并且与第三个句子语义相反。但是使用 BERT 模型的结果却是三个句子语义相近。</p>
+<p>最后看看 bge_m3模型的效果如何：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 bge_m3 模型获取句子的向量</span><br>bgem3_sentence_emb1 = get_bgem3_sentence_emb(sentence1)<br>bgem3_sentence_emb2 = get_bgem3_sentence_emb(sentence2)<br>bgem3_sentence_emb3 = get_bgem3_sentence_emb(sentence3)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;<span class="hljs-subst">&#123;sentence1&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence2&#125;</span>&#x27; 的余弦相似度: <span class="hljs-subst">&#123;cosine_similarity([bgem3_sentence_emb1], [bgem3_sentence_emb2])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;<span class="hljs-subst">&#123;sentence1&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence3&#125;</span>&#x27; 的余弦相似度: <span class="hljs-subst">&#123;cosine_similarity([bgem3_sentence_emb1], [bgem3_sentence_emb3])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&#x27;<span class="hljs-subst">&#123;sentence2&#125;</span>&#x27; 和 &#x27;<span class="hljs-subst">&#123;sentence3&#125;</span>&#x27; 的余弦相似度: <span class="hljs-subst">&#123;cosine_similarity([bgem3_sentence_emb2], [bgem3_sentence_emb3])[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]:<span class="hljs-number">.2</span>f&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#x27;我喜欢这部电影！&#x27; 和 &#x27;这部电影太棒了！&#x27; 的余弦相似度: 0.86<br>&#x27;我喜欢这部电影！&#x27; 和 &#x27;我讨厌这部电影。&#x27; 的余弦相似度: 0.65<br>&#x27;这部电影太棒了！&#x27; 和 &#x27;我讨厌这部电影。&#x27; 的余弦相似度: 0.57<br></code></pre></td></tr></table></figure>
+
+<p>从余弦相似度可以看出，前两个句子语义相近，和第三个句子语义较远。看来 bge_m3 模型确实可以捕捉句子中的上下文信息。</p>
+<h2 id="藏宝图"><a href="#藏宝图" class="headerlink" title="藏宝图"></a>藏宝图</h2><p>本文主要通过执行代码直观展示向量嵌入的原理和模型，如果你想进一步了解技术细节，这里有一些资料供你参考。</p>
+<h3 id="词向量模型"><a href="#词向量模型" class="headerlink" title="词向量模型"></a>词向量模型</h3><p>word2vect 模型论文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1301.3781">Efficient Estimation of Word Representations in Vector Space</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1310.4546">Distributed Representations of Words and Phrases and their Compositionality</a></li>
+</ul>
+<h3 id="中文词向量模型"><a href="#中文词向量模型" class="headerlink" title="中文词向量模型"></a>中文词向量模型</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Embedding/Chinese-Word-Vectors">Chinese-Word-Vectors</a> 项目提供了上百种预训练的中文词向量，这些词向量是基于不同的表征、上下文特征和语料库训练的，可以用于各种中文自然语言处理任务。</li>
+<li><a target="_blank" rel="noopener" href="https://ai.tencent.com/ailab/nlp/en/embedding.html">腾讯 AI Lab 中英文词和短语的嵌入语料库</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lzhenboy/word2vec-Chinese">word2vec-Chinese</a> 介绍了如何训练中文 Word2Vec 词向量模型。</li>
+</ul>
+<h3 id="BERT-模型"><a href="#BERT-模型" class="headerlink" title="BERT 模型"></a>BERT 模型</h3><p>BERT 模型论文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2004.12832">ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT</a></li>
+</ul>
+<p>BERT 模型的 GitHub：<a target="_blank" rel="noopener" href="https://github.com/google-research/bert">bert</a></p>
+<p>介绍 ColBERT 模型的博客：<a target="_blank" rel="noopener" href="https://zilliz.com/learn/explore-colbert-token-level-embedding-and-ranking-model-for-similarity-search">Exploring ColBERT: A Token-Level Embedding and Ranking Model for Efficient Similarity Search</a></p>
+<h3 id="bge-m3-模型"><a href="#bge-m3-模型" class="headerlink" title="bge_m3 模型"></a>bge_m3 模型</h3><p>介绍 bge_m3模型的博客：<a target="_blank" rel="noopener" href="https://zilliz.com/learn/bge-m3-and-splade-two-machine-learning-models-for-generating-sparse-embeddings#BERT-The-Foundation-Model-for-BGE-M3-and-Splade">Exploring BGE-M3 and Splade: Two Machine Learning Models for Generating Sparse Embeddings</a></p>
+<h3 id="注意力模型"><a href="#注意力模型" class="headerlink" title="注意力模型"></a>注意力模型</h3><p>注意力模型论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a></p>
+<h3 id="模型库"><a href="#模型库" class="headerlink" title="模型库"></a>模型库</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/">gensim</a> 包含了 word2vec 模型和 GloVe（Global Vectors for Word Representation）模型。</li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/transformers/">Transformers</a> 是 Hugging Face 开发的一个开源库，专门用于自然语言处理（NLP）任务，它提供了大量预训练的 Transformer 模型，如 BERT、GPT、T5 等，并且支持多种语言和任务。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-BERT-wwm">Chinese-BERT-wwm</a> 是哈工大讯飞联合实验室（HFL）发布的中文 BERT 模型。</li>
+<li><a target="_blank" rel="noopener" href="https://milvus.io/docs/embeddings.md">pymilvus.model</a> 是 PyMilvus 客户端库的一个子包，提供多种嵌入模型的封装，用于生成向量嵌入，简化了文本转换过程。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>严格来说，“目标词”不是单词而是“token”。token 是组成句子的基本单元。对于英文来说，token可以简单理解为单词，还可能是子词（subword）或者标点符号，比如“unhappiness” 可能会被分割成“un”和“happiness“。对于汉字来说，则是字、词或者短语，汉字不会像英文单词那样被分割。
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">向量数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A7%98/" class="category-chain-item">原理探秘</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>孙悟空 + 红楼梦 - 西游记 = ？向量嵌入之稠密向量</div>
+      <div>http://example.com/2024/10/11/孙悟空-红楼梦-西游记-？向量嵌入之稠密向量/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>爱写作的CAE工程师</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月11日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/01/07/%E5%86%99%E7%BB%99%E6%96%B0%E8%AF%BB%E8%80%85%E7%9A%84%E5%AF%BC%E8%88%AA/" title="写给新读者的导航">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">写给新读者的导航</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/16/%E5%A6%82%E4%BD%95%E5%81%87%E8%A3%85%E6%96%87%E8%89%BA%E9%9D%92%E5%B9%B4%EF%BC%8C%E6%80%8E%E4%B9%88%E6%8A%8A%E5%A4%A7%E7%99%BD%E8%AF%9D%E2%80%9C%E5%8F%98%E6%88%90%E2%80%9D%E5%8F%A4%E8%AF%97%E8%AF%8D%EF%BC%9F/" title="如何假装文艺青年，怎么把大白话“变成”古诗词？">
+                        <span class="hidden-mobile">如何假装文艺青年，怎么把大白话“变成”古诗词？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
