@@ -1,0 +1,1018 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile_picture.png">
+  <link rel="icon" href="/img/profile_picture.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="爱写作的CAE工程师">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前段时间我开发了一个用白话文搜索语义相近的古诗词的应用（详见： [[01-如何假装文艺青年，怎么把大白话“变成”古诗词？]]），但是有时候搜索结果却不让人满意，排名靠前的结果和查询的语义没啥关系，靠后的结果反而和查询更相似。比如，我用白话文“今天的雨好大”搜索，前三个结果是：  今日云景好，水绿秋山明。今日风日好，明日恐不如。雨落不上天，水覆难再收。  前两个都和雨没有关系，第三个勉强沾边。 为啥">
+<meta property="og:type" content="article">
+<meta property="og:title" content="语义搜索效果差？试试重排">
+<meta property="og:url" content="http://example.com/2025/01/15/%E8%AF%AD%E4%B9%89%E6%90%9C%E7%B4%A2%E6%95%88%E6%9E%9C%E5%B7%AE%EF%BC%9F%E8%AF%95%E8%AF%95%E9%87%8D%E6%8E%92/index.html">
+<meta property="og:site_name" content="江浩探索AI大陆">
+<meta property="og:description" content="前段时间我开发了一个用白话文搜索语义相近的古诗词的应用（详见： [[01-如何假装文艺青年，怎么把大白话“变成”古诗词？]]），但是有时候搜索结果却不让人满意，排名靠前的结果和查询的语义没啥关系，靠后的结果反而和查询更相似。比如，我用白话文“今天的雨好大”搜索，前三个结果是：  今日云景好，水绿秋山明。今日风日好，明日恐不如。雨落不上天，水覆难再收。  前两个都和雨没有关系，第三个勉强沾边。 为啥">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202501042343533.png">
+<meta property="article:published_time" content="2025-01-15T03:29:58.000Z">
+<meta property="article:modified_time" content="2025-01-19T03:30:31.904Z">
+<meta property="article:author" content="江浩">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202501042343533.png">
+  
+  
+  
+  <title>语义搜索效果差？试试重排 - 江浩探索AI大陆</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>江浩探索AI大陆</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">语义搜索效果差？试试重排</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        爱写作的CAE工程师
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-15 11:29" pubdate>
+          2025年1月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">语义搜索效果差？试试重排</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>前段时间我开发了一个用白话文搜索语义相近的古诗词的应用（详见： [[01-如何假装文艺青年，怎么把大白话“变成”古诗词？]]），但是有时候搜索结果却不让人满意，排名靠前的结果和查询的语义没啥关系，靠后的结果反而和查询更相似。比如，我用白话文“今天的雨好大”搜索，前三个结果是：</p>
+<blockquote>
+<p>今日云景好，水绿秋山明。<br>今日风日好，明日恐不如。<br>雨落不上天，水覆难再收。</p>
+</blockquote>
+<p>前两个都和雨没有关系，第三个勉强沾边。</p>
+<p>为啥语义更相近的句子，反而排名靠后呢？主要有两个原因，一个是“不理解”，另一个是“难精确”。</p>
+<p>“不理解”和嵌入模型有关。我使用的嵌入模型可能训练语料中古诗词较少，导致它不能很好地“理解”古诗词的语义。</p>
+<p>“难精确”指的是不论你的度量方法使用的是余弦相似度（Cosine），还是欧几里得距离（L2），都不能保证语义最相似的结果一定排在第一。这些方法都是简化的模型，句子的语义内涵很难只用中学数学知识就能准确计算，只能说在整体趋势上，得分越高的结果语义和查询越接近。这就好像深圳入冬后，我们预测温度在10-20°C 之间，这样的预测整体来说是正确的，但是具体到每一天的温度就不一定准确了，可能有那么一两天，温度升到了25°C。</p>
+<p>这样的预测相当于语义搜索中的初步搜索，叫做“粗排”。想要优化搜索结果，重新排名，还需要“重排”，也就是 rerank。</p>
+<p>除此之外，还有一种情况下也需要重排，那就是混合搜索。我在 [[04-门外汉如何“冒充”专家？向量嵌入之稀疏向量]] 这篇文章中介绍了稀疏向量，稠密向量和稀疏向量各有优势，怎么各取所长呢？可以先分别搜索（也就是混合搜索），再用搜索结果综合起来，而重排就是一种综合多种搜索结果的方法。</p>
+<p>这两种重排有所区别，第一种是基于深度学习的重排，第二种是基于统计的重排。第二种原理更简单，我们先来了解第二种。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[一文玩转 Milvus 新特性之 Hybrid Search](https://zilliz.com.cn/blog/Hybrid-Search)">[1]</span></a></sup> </p>
+<blockquote>
+<p>本文首发于 Zilliz 公众号。文中代码的 Notebook 在<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15z5hYqnuH3jXqUsYEcQO8g?pwd=jg5y">这里</a>下载。</p>
+</blockquote>
+<h2 id="基于统计的重排"><a href="#基于统计的重排" class="headerlink" title="基于统计的重排"></a>基于统计的重排</h2><p>基于统计的重排用于混合搜索，它可以把多种搜索结果综合起来，重新排序。除了前面介绍的稠密向量和稀疏向量，还可以综合文本向量和图片向量。</p>
+<p>怎么综合呢？有两种方法，一种是 WeightedRanker ——分数加权平均算法，通过设置权重计算得分，后面简称权重策略。另一种是 RRFRanker（Reciprocal Rank Fusion）——逆序排名融合算法，通过排名的倒数来计算得分，后面简称 RRF 策略。</p>
+<h3 id="权重策略"><a href="#权重策略" class="headerlink" title="权重策略"></a>权重策略</h3><p>权重策略就是设置权重。权重值范围从0到1，数值越大表示重要性越大。计算方法很简单，初始得分乘以权重，就是最终得分。<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Reranking](https://milvus.io/docs/reranking.md#Weighted-Scoring-WeightedRanker)">[2]</span></a></sup></p>
+<p>$$\text{WeightedRanker_score} &#x3D; \sum_{i&#x3D;1}^{N} (w_i \times \text{score_n}_i) $$</p>
+<p>打个比方，假设某班级考了语文和数学两门课，统计出学生每门科目的分数和排名。学生就相当于向量数据库中的文档，学生这两门课的分数，就相当于文档在不同搜索结果中的得分。</p>
+<p>假设学生的成绩如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>学生编号</th>
+<th>数学成绩</th>
+<th>语文成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S1</td>
+<td>100</td>
+<td>50</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>95</td>
+<td>55</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>80</td>
+<td>70</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>65</td>
+<td>85</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>80</td>
+<td>75</td>
+</tr>
+<tr>
+<td>S6</td>
+<td>75</td>
+<td>80</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>70</td>
+<td>85</td>
+</tr>
+<tr>
+<td>S8</td>
+<td>65</td>
+<td>80</td>
+</tr>
+<tr>
+<td>S9</td>
+<td>60</td>
+<td>85</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>55</td>
+<td>95</td>
+</tr>
+</tbody></table>
+<p>在权重策略下，综合得分公式为：<br>$$score &#x3D; 数学成绩 * 0.7 + 语文成绩 * 0.3$$<br>根据公式计算出学生们的综合分数，排名如下：</p>
+<table>
+<thead>
+<tr>
+<th>权重综合排名</th>
+<th>权重综合得分</th>
+<th>学生编号</th>
+<th>数学成绩</th>
+<th>语文成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>85</td>
+<td>S1</td>
+<td>100</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>83</td>
+<td>S2</td>
+<td>95</td>
+<td>55</td>
+</tr>
+<tr>
+<td>3</td>
+<td>78.5</td>
+<td>S5</td>
+<td>80</td>
+<td>75</td>
+</tr>
+<tr>
+<td>4</td>
+<td>77</td>
+<td>S3</td>
+<td>80</td>
+<td>70</td>
+</tr>
+<tr>
+<td>5</td>
+<td>76.5</td>
+<td>S6</td>
+<td>75</td>
+<td>80</td>
+</tr>
+<tr>
+<td>6</td>
+<td>74.5</td>
+<td>S7</td>
+<td>70</td>
+<td>85</td>
+</tr>
+<tr>
+<td>7</td>
+<td>71</td>
+<td>S4</td>
+<td>65</td>
+<td>85</td>
+</tr>
+<tr>
+<td>8</td>
+<td>69.5</td>
+<td>S8</td>
+<td>65</td>
+<td>80</td>
+</tr>
+<tr>
+<td>9</td>
+<td>67.5</td>
+<td>S9</td>
+<td>60</td>
+<td>85</td>
+</tr>
+<tr>
+<td>10</td>
+<td>67</td>
+<td>S10</td>
+<td>55</td>
+<td>95</td>
+</tr>
+</tbody></table>
+<h3 id="RRF-策略"><a href="#RRF-策略" class="headerlink" title="RRF 策略"></a>RRF 策略</h3><p>RRF 策略的计算方式稍微复杂一点：<br>$$\text{RRF_score}(d) &#x3D; \sum_{i&#x3D;1}^{N} \frac{1}{k + \text{rank}_i (d)}$$</p>
+<p>公式中的 rank 是初始分数的排名，k 是平滑参数。从公式中可以看出，排名越靠前，rank 的值越小，综合得分越高。同时， k 的值越大，排名对分数的影响越小。</p>
+<p>我们使用 RRF 策略重新计算分数和排名。参数 k 一般为60，为方便演示，这里设为 10，公式变成：<br>$$\text{RRF_score}(d) &#x3D; \sum_{i&#x3D;1}^{N} \frac{1}{10 + \text{rank}_i (d)}$$</p>
+<p>RRF 策略根据排名计算分数，所以我们先列出数学和语文的排名。<br>数学成绩排名：</p>
+<table>
+<thead>
+<tr>
+<th>数学排名</th>
+<th>数学成绩</th>
+<th>学生编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>100</td>
+<td>S1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>95</td>
+<td>S2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>80</td>
+<td>S3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>80</td>
+<td>S5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>75</td>
+<td>S6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>70</td>
+<td>S7</td>
+</tr>
+<tr>
+<td>7</td>
+<td>65</td>
+<td>S8</td>
+</tr>
+<tr>
+<td>7</td>
+<td>65</td>
+<td>S4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>60</td>
+<td>S9</td>
+</tr>
+<tr>
+<td>10</td>
+<td>55</td>
+<td>S10</td>
+</tr>
+</tbody></table>
+<p>语文成绩排名：</p>
+<table>
+<thead>
+<tr>
+<th>语文排名</th>
+<th>语文成绩</th>
+<th>学生编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>95</td>
+<td>S10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>85</td>
+<td>S4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>85</td>
+<td>S7</td>
+</tr>
+<tr>
+<td>2</td>
+<td>85</td>
+<td>S9</td>
+</tr>
+<tr>
+<td>5</td>
+<td>80</td>
+<td>S6</td>
+</tr>
+<tr>
+<td>5</td>
+<td>80</td>
+<td>S8</td>
+</tr>
+<tr>
+<td>7</td>
+<td>75</td>
+<td>S5</td>
+</tr>
+<tr>
+<td>8</td>
+<td>70</td>
+<td>S3</td>
+</tr>
+<tr>
+<td>9</td>
+<td>55</td>
+<td>S2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>50</td>
+<td>S1</td>
+</tr>
+</tbody></table>
+<p>接下来使用 RRF 策略计算综合得分，重新排名：</p>
+<table>
+<thead>
+<tr>
+<th>RRF 综合排名</th>
+<th>RRF 综合得分</th>
+<th>学生编号</th>
+<th>数学成绩</th>
+<th>语文成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0.1458</td>
+<td>S7</td>
+<td>70</td>
+<td>85</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.1421</td>
+<td>S4</td>
+<td>65</td>
+<td>85</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.1409</td>
+<td>S1</td>
+<td>100</td>
+<td>50</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.1409</td>
+<td>S10</td>
+<td>55</td>
+<td>95</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.1359</td>
+<td>S2</td>
+<td>95</td>
+<td>55</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.1359</td>
+<td>S9</td>
+<td>60</td>
+<td>85</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0.1357</td>
+<td>S5</td>
+<td>80</td>
+<td>75</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.1334</td>
+<td>S6</td>
+<td>75</td>
+<td>80</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0.1325</td>
+<td>S3</td>
+<td>80</td>
+<td>70</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0.1255</td>
+<td>S8</td>
+<td>65</td>
+<td>80</td>
+</tr>
+</tbody></table>
+<p>比较两个排名可以发现，在权重策略下，数学的权重较大，偏科学生 S1虽然语文只有50分，也能因为数学100分而排在第一名。而 RRF 策略注重的是各科的排名，而不是分数，所以 S1的数学虽然排名第一，但是语文排名第10，综合排名下降到第三。</p>
+<p>学生 S7 正好相反，在权重策略下，即使他语文得了85的高分，但是权重只占30%，而高权重的数学只得了70分，所以综合排名靠后，排在第六名。在 RRF 策略下，他的数学和语文排名分别是第六名和第二名，语文的高排名拉高了综合排名，上升到了第一名。</p>
+<p>通过比较两种策略的排名结果，我们发现了这样的规律，如果你更看重搜索结果的得分，就使用权重策略，你还可以通过调整权重来调整得分；如果你更看重搜索结果的排名，就使用RRF策略。</p>
+<h2 id="基于深度学习的重排"><a href="#基于深度学习的重排" class="headerlink" title="基于深度学习的重排"></a>基于深度学习的重排</h2><p>和基于统计的重排相比，基于深度学习的重排更加复杂，通常被称为 Cross-encoder Reranker，交叉编码重排，后面简称“重排模型”。</p>
+<p>粗排和重排模型有什么区别呢？粗排搜索速度更快，重排模型准确性更高。</p>
+<p>为什么粗排搜索速快？粗排使用的是双塔模型（Dual-Encoder），“双塔”指的是它有两个独立的编码器，分别把查询和文档向量化，然后通过计算向量之间的相似度（比如余弦相似度Cosine）搜索结果并且排序。双塔模型的优势在于搜索效率高，因为可以提前计算文档向量，搜索时只需要向量化查询即可。而重排模型则是在搜索时现场编码。就好比两个饭店，一个使用预制菜，一个现场热炒，上菜速度肯定不一样。</p>
+<p>重排模型的优势则是准确性高。它把查询和文档组成数据对后输入给编码器编码，然后给它们的相似程度打分，针对性强。这就相当于公司招聘人才，粗排是根据专业、学历和工作年限等几个指标快速筛选简历，挑选出多位候选者。重排则是通过面试详细了解候选者做过什么项目，遇到了什么挑战，解决了什么难题，然后判断他有多适合应聘的岗位（文档与查询有多相似）。</p>
+<p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202501042343533.png" srcset="/img/loading.gif" lazyload alt="image.png|600"><br>图片来源：自己画的</p>
+<p>所以，重排模型适合那些对回答准确性要求高的场景，比如专业知识库或者客服系统。不适合追求高响应速度和低成本的场景，比如网页搜索、电商，这种场景建议使用基于统计的重排。</p>
+<p>你还可以把粗排和重排模型结合起来。比如，先通过粗排筛选出10个候选结果，再用重排模型重新排名。既可以提高搜索速度，也能保证准确度。</p>
+<h2 id="代码实践"><a href="#代码实践" class="headerlink" title="代码实践"></a>代码实践</h2><p>版本说明：<br>Milvus 版本：&gt;&#x3D;2.5.0<br>pymilvus 版本：&gt;&#x3D;2.5.0</p>
+<p>接下来我们通过代码实践一下，看看这些重排方法实际效果到底如何。</p>
+<p>我们会使用“敏捷的狐狸跳过懒惰的狗。”作为查询，从下面10个句子中搜索出语义相似的句子。你可以先猜一猜，粗排、基于统计的重排以及基于深度学习的重排，哪个效果最好。</p>
+<p>文档：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;灵活的狐跳过了懒散的犬。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;一只敏捷的狐在公园里跳过了那只懒犬。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;那只懈怠的犬正在大树下睡觉。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;在公园里，那只棕色的狐狸正在跳。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;犬跃过了狐。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;树下有一个小池塘。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;动物如狗和狐狸生活在公园里。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;池塘靠近公园里的大树。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;懒狗跳过了狐狸。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;那只灵巧的狐狸轻松地跨过了那只懒散的狗。&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;狐迅速地跳过了那只不活跃的犬。&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<p>首先创建集合。我们为集合设置稠密向量“dense_vectors”和稀疏向量“sparse_vectors”两个字段，分别储存稠密向量和稀疏向量，用于混合搜索。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pymilvus <span class="hljs-keyword">import</span> MilvusClient, DataType<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-comment"># 检查并且删除同名集合</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_and_drop_collection</span>(<span class="hljs-params">collection_name</span>):<br>    <span class="hljs-keyword">if</span> milvus_client.has_collection(collection_name):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;集合 <span class="hljs-subst">&#123;collection_name&#125;</span> 已经存在&quot;</span>)<br>        <span class="hljs-keyword">try</span>:<br>            milvus_client.drop_collection(collection_name)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;删除集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;删除集合时出现错误: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br><br><span class="hljs-comment"># 创建模式</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_schema</span>():<br>    schema = milvus_client.create_schema(<br>        auto_id=<span class="hljs-literal">True</span>,<br>        enable_dynamic_field=<span class="hljs-literal">True</span>,<br>        description=<span class="hljs-string">&quot;&quot;</span><br>    )<br>    schema.add_field(field_name=<span class="hljs-string">&quot;id&quot;</span>, datatype=DataType.INT64, is_primary=<span class="hljs-literal">True</span>, max_length=<span class="hljs-number">256</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;content&quot;</span>, datatype=DataType.VARCHAR, max_length=<span class="hljs-number">256</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;dense_vectors&quot;</span>, datatype=DataType.FLOAT_VECTOR, dim=<span class="hljs-number">1024</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;sparse_vectors&quot;</span>, datatype=DataType.SPARSE_FLOAT_VECTOR)<br>    <span class="hljs-keyword">return</span> schema<br><br><br><span class="hljs-comment"># 创建集合</span><br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_collection</span>(<span class="hljs-params">collection_name, schema, timeout = <span class="hljs-number">3</span></span>):<br>    <span class="hljs-comment"># 创建集合</span><br>    <span class="hljs-keyword">try</span>:<br>        milvus_client.create_collection(<br>            collection_name=collection_name,<br>            schema=schema,<br>            shards_num=<span class="hljs-number">2</span><br>        )<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;开始创建集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;创建集合的过程中出现了错误: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>    <span class="hljs-comment"># 检查集合是否创建成功</span><br>    start_time = time.time()<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-keyword">if</span> milvus_client.has_collection(collection_name):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;集合 <span class="hljs-subst">&#123;collection_name&#125;</span> 创建成功&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">elif</span> time.time() - start_time &gt; timeout:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;创建集合 <span class="hljs-subst">&#123;collection_name&#125;</span> 超时&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>        time.sleep(<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CollectionDeletionError</span>(<span class="hljs-title class_ inherited__">Exception</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;删除集合失败&quot;&quot;&quot;</span><br><br><br><br>collection_name = <span class="hljs-string">&quot;test_rank&quot;</span><br>uri=<span class="hljs-string">&quot;http://localhost:19530&quot;</span><br>milvus_client = MilvusClient(uri=uri)<br><br><span class="hljs-comment"># 如果无法删除集合，抛出异常</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> check_and_drop_collection(collection_name):<br>    <span class="hljs-keyword">raise</span> CollectionDeletionError(<span class="hljs-string">&#x27;删除集合失败&#x27;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-comment"># 创建集合的模式</span><br>    schema = create_schema()<br>    <span class="hljs-comment"># 创建集合并等待成功</span><br>    create_collection(collection_name, schema)<br></code></pre></td></tr></table></figure>
+
+<p>然后，定义把文档向量化的函数。我们使用 bge_m3 生成稠密向量和稀疏向量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> pymilvus.model.hybrid <span class="hljs-keyword">import</span> BGEM3EmbeddingFunction<br><br><span class="hljs-comment"># 初始化嵌入模型的实例</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">init_embedding_model</span>():<br>    <span class="hljs-comment"># 检查是否有可用的CUDA设备</span><br>    device = <span class="hljs-string">&quot;cuda:0&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span><br>    <span class="hljs-comment"># 根据设备选择是否使用fp16</span><br>    use_fp16 = device.startswith(<span class="hljs-string">&quot;cuda&quot;</span>)<br>    <span class="hljs-comment"># 创建嵌入模型实例</span><br>    bge_m3_ef = BGEM3EmbeddingFunction(<br>        model_name=<span class="hljs-string">&quot;BAAI/bge-m3&quot;</span>,<br>        device=device,<br>        use_fp16=use_fp16<br>    )<br>    <span class="hljs-keyword">return</span> bge_m3_ef<br><br><br><span class="hljs-comment"># 把查询向量化</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vectorize_query</span>(<span class="hljs-params">query, encoder</span>):<br>    <span class="hljs-comment"># 验证参数是否符合要求</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (<span class="hljs-built_in">isinstance</span>(query, <span class="hljs-built_in">list</span>) <span class="hljs-keyword">and</span> <span class="hljs-built_in">all</span>(<span class="hljs-built_in">isinstance</span>(text, <span class="hljs-built_in">str</span>) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> query)):<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;query必须为字符串列表。&quot;</span>)<br>    <span class="hljs-keyword">return</span> encoder.encode_queries(query)<br><br><br><span class="hljs-comment"># 把文档向量化</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vectorize_docs</span>(<span class="hljs-params">docs, encoder</span>):<br>    <span class="hljs-comment"># 验证参数是否符合要求</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (<span class="hljs-built_in">isinstance</span>(docs, <span class="hljs-built_in">list</span>) <span class="hljs-keyword">and</span> <span class="hljs-built_in">all</span>(<span class="hljs-built_in">isinstance</span>(text, <span class="hljs-built_in">str</span>) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> docs)):<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;docs必须为字符串列表。&quot;</span>)<br>    <span class="hljs-keyword">return</span> encoder.encode_documents(docs)<br><br><br><span class="hljs-comment"># 初始化嵌入模型实例</span><br>bge_m3_ef = init_embedding_model()<br></code></pre></td></tr></table></figure>
+
+<p>接下来，生成向量并且导入向量数据库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br><br><span class="hljs-comment"># 把文件中的指定字段向量化</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vectorize_file</span>(<span class="hljs-params">input_file_path, encoder, field_name</span>):<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(input_file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        data_list = json.load(file)<br>        docs = [data[field_name] <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list]<br>    <span class="hljs-comment"># 向量化文档</span><br>    <span class="hljs-keyword">return</span> vectorize_docs(docs, encoder), data_list<br><br><br><span class="hljs-comment"># 把数据插入数据库</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">insert_data</span>(<span class="hljs-params"></span><br><span class="hljs-params">    collection_name: <span class="hljs-built_in">str</span>,</span><br><span class="hljs-params">    data_list,</span><br><span class="hljs-params">    dense_vectors,</span><br><span class="hljs-params">    sparse_vectors,</span><br><span class="hljs-params">    batch_size: <span class="hljs-built_in">int</span> = <span class="hljs-number">1000</span></span>):<br>    <span class="hljs-comment"># 定义默认稀疏向量，避免生成稀疏向量失败。元素值全为0，表示它在所有维度上都不重要</span><br>    default_sparse_vector = &#123;<span class="hljs-number">0</span>: <span class="hljs-number">1.0</span>, <span class="hljs-number">1</span>: <span class="hljs-number">1.0</span>, <span class="hljs-number">2</span>: <span class="hljs-number">1.0</span>, <span class="hljs-number">3</span>: <span class="hljs-number">1.0</span>&#125;<br><br>    <span class="hljs-comment"># 接收稠密向量和稀疏向量</span><br>    <span class="hljs-keyword">for</span> data, dense_vector, sparse_vector <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(data_list, dense_vectors, sparse_vectors):<br>        data[<span class="hljs-string">&#x27;dense_vectors&#x27;</span>] = dense_vector<br>        <span class="hljs-comment"># 如果稀疏向量为空，则使用默认稀疏向量，避免入库时报错</span><br>        <span class="hljs-keyword">if</span> sparse_vector <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>            data[<span class="hljs-string">&#x27;sparse_vectors&#x27;</span>] = sparse_vector<br>        <span class="hljs-keyword">else</span>:<br>            data[<span class="hljs-string">&#x27;sparse_vectors&#x27;</span>] = default_sparse_vector<br><br>    <span class="hljs-comment"># 分批入库</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;正在将数据插入集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>    total_count = <span class="hljs-built_in">len</span>(data_list)<br>    <span class="hljs-keyword">with</span> tqdm(total=total_count, desc=<span class="hljs-string">&quot;插入数据&quot;</span>) <span class="hljs-keyword">as</span> progress_bar:<br>        <span class="hljs-comment"># 每次插入 batch_size 条数据</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, total_count, batch_size):  <br>            batch_data = data_list[i:i + batch_size]<br>            res = milvus_client.insert(<br>                collection_name=collection_name,<br>                data=batch_data<br>            )<br>            progress_bar.update(<span class="hljs-built_in">len</span>(batch_data))<br><br><br>input_file_path = <span class="hljs-string">&quot;docs_rank.json&quot;</span><br>field_name = <span class="hljs-string">&quot;content&quot;</span><br>vectors, data_list = vectorize_file(input_file_path, bge_m3_ef, field_name)<br>docs_dense_vectors = vectors[<span class="hljs-string">&#x27;dense&#x27;</span>]<br>docs_sparse_vectors = vectors[<span class="hljs-string">&#x27;sparse&#x27;</span>]<br>insert_data(collection_name, data_list, docs_dense_vectors, docs_sparse_vectors)<br></code></pre></td></tr></table></figure>
+
+<p>数据入库后，为它们创建索引。因为数据库中同时包含了两个向量，所以使用混合搜索，需要分别创建稠密向量和稀疏向量的索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python">index_params = milvus_client.prepare_index_params()<br><br><span class="hljs-comment"># 创建密集向量索引参数</span><br>index_params.add_index(<br>    index_name=<span class="hljs-string">&quot;IVF_FLAT&quot;</span>,<br>    field_name=<span class="hljs-string">&quot;dense_vectors&quot;</span>,<br>    index_type=<span class="hljs-string">&quot;IVF_FLAT&quot;</span>,<br>    metric_type=<span class="hljs-string">&quot;COSINE&quot;</span>,<br>    params=&#123;<span class="hljs-string">&quot;nlist&quot;</span>: <span class="hljs-number">128</span>&#125;<br>)<br><br><span class="hljs-comment"># 创建稀疏向量索引参数</span><br>index_params.add_index(<br>    index_name=<span class="hljs-string">&quot;sparse&quot;</span>,<br>    field_name=<span class="hljs-string">&quot;sparse_vectors&quot;</span>,<br>    index_type=<span class="hljs-string">&quot;SPARSE_INVERTED_INDEX&quot;</span>,<br>    <span class="hljs-comment"># 目前仅支持IP</span><br>    metric_type=<span class="hljs-string">&quot;IP&quot;</span>,<br>    params=&#123;<span class="hljs-string">&quot;drop_ratio_build&quot;</span>: <span class="hljs-number">0.2</span>&#125;<br>)<br></code></pre></td></tr></table></figure>
+
+<p>加载集合。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;正在加载集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>milvus_client.load_collection(collection_name=collection_name)<br><br><span class="hljs-comment"># 验证加载状态</span><br><span class="hljs-built_in">print</span>(milvus_client.get_load_state(collection_name=collection_name))<br></code></pre></td></tr></table></figure>
+
+<p>为了实现混合搜索，还需要定义混合搜索函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 混合搜索</span><br><span class="hljs-keyword">from</span> pymilvus <span class="hljs-keyword">import</span> AnnSearchRequest, WeightedRanker, RRFRanker<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">perform_hybrid_search</span>(<span class="hljs-params"></span><br><span class="hljs-params">    collection_name, </span><br><span class="hljs-params">    query, </span><br><span class="hljs-params">    ranker,</span><br><span class="hljs-params">    output_fields,</span><br><span class="hljs-params">    limit_dense,</span><br><span class="hljs-params">    limit_sparse,</span><br><span class="hljs-params">    limit_hybrid</span><br><span class="hljs-params">    </span>):<br>    <span class="hljs-comment"># 获取查询的稠密向量和稀疏向量</span><br>    query_vectors = vectorize_query(query, bge_m3_ef)<br>    query_dense_vectors = [query_vectors[<span class="hljs-string">&#x27;dense&#x27;</span>][<span class="hljs-number">0</span>]]<br>    query_sparse_vectors = [query_vectors[<span class="hljs-string">&#x27;sparse&#x27;</span>][[<span class="hljs-number">0</span>]]]<br>    <span class="hljs-comment"># 创建稠密向量的搜索参数</span><br>    dense_search_params = &#123;<br>        <span class="hljs-comment"># 查询向量</span><br>        <span class="hljs-string">&quot;data&quot;</span>: query_dense_vectors,  <br>        <span class="hljs-string">&quot;anns_field&quot;</span>: <span class="hljs-string">&quot;dense_vectors&quot;</span>,<br>        <span class="hljs-string">&quot;param&quot;</span>: &#123;<br>            <span class="hljs-string">&quot;metric_type&quot;</span>: <span class="hljs-string">&quot;COSINE&quot;</span>,<br>            <span class="hljs-string">&quot;params&quot;</span>: &#123;<br>                <span class="hljs-string">&quot;nprobe&quot;</span>: <span class="hljs-number">16</span>,<br>                <span class="hljs-string">&quot;radius&quot;</span>: <span class="hljs-number">0.1</span>,<br>                <span class="hljs-string">&quot;range_filter&quot;</span>: <span class="hljs-number">1</span><br>            &#125;<br>        &#125;,<br>        <span class="hljs-string">&quot;limit&quot;</span>: limit_dense<br>    &#125;<br>    <span class="hljs-comment"># 创建稠密向量的搜索请求</span><br>    dense_req = AnnSearchRequest(**dense_search_params)<br>    <br>    <span class="hljs-comment"># 创建稀疏向量的搜索参数</span><br>    sparse_search_params = &#123;<br>        <span class="hljs-string">&quot;data&quot;</span>: query_sparse_vectors,<br>        <span class="hljs-string">&quot;anns_field&quot;</span>: <span class="hljs-string">&quot;sparse_vectors&quot;</span>,<br>        <span class="hljs-string">&quot;param&quot;</span>: &#123;<br>            <span class="hljs-string">&quot;metric_type&quot;</span>: <span class="hljs-string">&quot;IP&quot;</span>,<br>            <span class="hljs-string">&quot;params&quot;</span>: &#123;<span class="hljs-string">&quot;drop_ratio_search&quot;</span>: <span class="hljs-number">0.2</span>&#125;<br>        &#125;,<br>        <span class="hljs-string">&quot;limit&quot;</span>: limit_sparse<br>    &#125;<br>    <span class="hljs-comment"># 创建稀疏向量的搜索请求</span><br>    sparse_req = AnnSearchRequest(**sparse_search_params)<br>    <span class="hljs-comment"># 执行混合搜索</span><br>    start_time = time.time()<br>    res = milvus_client.hybrid_search(<br>        collection_name=collection_name,<br>        reqs=[dense_req, sparse_req],<br>        ranker = ranker,<br>        limit=limit_hybrid,<br>        output_fields=output_fields<br>    )<br>    end_time = time.time()<br>    total_time = end_time - start_time<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;搜索时间：<span class="hljs-subst">&#123;total_time:<span class="hljs-number">.3</span>f&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+<p>最后再定义一个打印函数，方便查看搜索结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_vector_results</span>(<span class="hljs-params">res</span>):   <br>    <span class="hljs-keyword">for</span> hits <span class="hljs-keyword">in</span> res:<br>        <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> hits:<br>            entity = hit.get(<span class="hljs-string">&quot;entity&quot;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;content: <span class="hljs-subst">&#123;entity[<span class="hljs-string">&#x27;content&#x27;</span>]&#125;</span>&quot;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;distance: <span class="hljs-subst">&#123;hit[<span class="hljs-string">&#x27;distance&#x27;</span>]:<span class="hljs-number">.4</span>f&#125;</span>&quot;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;-&quot;</span>*<span class="hljs-number">50</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;数量：<span class="hljs-subst">&#123;<span class="hljs-built_in">len</span>(hits)&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="对比搜索结果"><a href="#对比搜索结果" class="headerlink" title="对比搜索结果"></a>对比搜索结果</h2><p>准备工作就绪，先分别看下稠密向量和稀疏向量的搜索结果。在混合搜索的权重策略下，调整权重，一个设置1，另一个设置为0，就可以只查看一种搜索结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">query = [<span class="hljs-string">&quot;敏捷的狐狸跳过懒惰的狗。&quot;</span>]<br>ranker=WeightedRanker(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)<br>output_fields = [<span class="hljs-string">&quot;content&quot;</span>]<br>limit_dense = <span class="hljs-number">10</span><br>limit_sparse = <span class="hljs-number">10</span><br>limit_hybrid = <span class="hljs-number">10</span><br><br>res_dense = perform_hybrid_search(collection_name, query, ranker, output_fields, limit_dense, limit_sparse, limit_hybrid)<br>print_vector_results(res_dense)<br></code></pre></td></tr></table></figure>
+
+<p>稠密向量的搜索结果勉强及格，正确答案分别排在第一、第三、第四和第五。让人不满意的是，语义和查询完全相反的句子，却排在了第二和第六，而且前6个搜索结果的得分相差很小，区别不明显。</p>
+<p>另外，留意一下搜索时间是0.012秒，后面要和基于深度学习的重排做比较。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">搜索时间：0.012<br>content: 灵活的狐跳过了懒散的犬。<br>distance: 0.9552<br>--------------------------------------------------<br>content: 懒狗跳过了狐狸。<br>distance: 0.9444<br>--------------------------------------------------<br>content: 一只敏捷的狐在公园里跳过了那只懒犬。<br>distance: 0.9373<br>--------------------------------------------------<br>content: 那只灵巧的狐狸轻松地跨过了那只懒散的狗。<br>distance: 0.9366<br>--------------------------------------------------<br>content: 狐迅速地跳过了那只不活跃的犬。<br>distance: 0.9194<br>--------------------------------------------------<br>content: 犬跃过了狐。<br>distance: 0.9025<br>--------------------------------------------------<br>content: 在公园里，那只棕色的狐狸正在跳。<br>distance: 0.8456<br>--------------------------------------------------<br>content: 动物如狗和狐狸生活在公园里。<br>distance: 0.8303<br>--------------------------------------------------<br>content: 那只懈怠的犬正在大树下睡觉。<br>distance: 0.7702<br>--------------------------------------------------<br>content: 树下有一个小池塘。<br>distance: 0.7174<br>--------------------------------------------------<br>数量：10<br></code></pre></td></tr></table></figure>
+
+<p>调整权重，再来看看稀疏向量的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">ranker=WeightedRanker(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>res_sparse = perform_hybrid_search(collection_name, query, ranker, output_fields, limit_dense, limit_sparse, limit_hybrid)<br>print_vector_results(res_sparse)<br></code></pre></td></tr></table></figure>
+
+<p><del>稀疏向量的搜索结果不太理想，第一个搜索结果是正确的，第二、第三个搜索结果和查询相差太大，另一个正确答案在第四位才出现。搜索时间是0.014秒，和稠密向量相当。</del></p>
+<p>稀疏向量的搜索结果就更差了，正确答案分别排在第二、第三、第六和第七。这是因为我特意用语义相近但是文本不同的词做了替换，比如用“犬”代替“狗”，“懈怠”代替“懒”，导致它们较难命中查询中的词，得分较低。如果你想了解稀疏向量是如何参与搜索并且计算得分的，可以看看 [[04-门外汉如何“冒充”专家？向量嵌入之稀疏向量]] 这篇文章。</p>
+<p>搜索时间是0.014秒，和稠密向量相当。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">搜索时间：0.014<br>content: 懒狗跳过了狐狸。<br>distance: 0.5801<br>--------------------------------------------------<br>content: 那只灵巧的狐狸轻松地跨过了那只懒散的狗。<br>distance: 0.5586<br>--------------------------------------------------<br>content: 一只敏捷的狐在公园里跳过了那只懒犬。<br>distance: 0.5553<br>--------------------------------------------------<br>content: 在公园里，那只棕色的狐狸正在跳。<br>distance: 0.5502<br>--------------------------------------------------<br>content: 动物如狗和狐狸生活在公园里。<br>distance: 0.5476<br>--------------------------------------------------<br>content: 灵活的狐跳过了懒散的犬。<br>distance: 0.5441<br>--------------------------------------------------<br>content: 狐迅速地跳过了那只不活跃的犬。<br>distance: 0.5336<br>--------------------------------------------------<br>content: 犬跃过了狐。<br>distance: 0.5192<br>--------------------------------------------------<br>content: 那只懈怠的犬正在大树下睡觉。<br>distance: 0.5006<br>--------------------------------------------------<br>content: 树下有一个小池塘。<br>distance: 0.0000<br>--------------------------------------------------<br>数量：10<br></code></pre></td></tr></table></figure>
+
+<p>接下来是重点了，我们分别使用权重策略和 RRF 策略，看看重排后的结果如何。</p>
+<p>先来看看权重策略中，权重是如何影响综合得分的。我们给稠密向量设置更高的权重——0.8，稀疏向量的权重则设置为0.2。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">ranker=WeightedRanker(<span class="hljs-number">0.8</span>, <span class="hljs-number">0.2</span>)<br>res_Weighted = perform_hybrid_search(collection_name, query, ranker, output_fields, limit_dense, limit_sparse, limit_hybrid)<br>print_vector_results(res_Weighted)<br></code></pre></td></tr></table></figure>
+
+<p>综合排名第一的结果“灵活的狐跳过了懒散的犬。”，在稠密向量中的得分是0.9552，排名也是第一，与第二名相差0.108。</p>
+<p>它在稀疏向量中的得分是0.5441，排名第六。虽然排名低，但是得分与第一名只差0.036分，而且权重只占0.2，对综合得分仍然是第一。因为稠密向量的权重高，综合排名基本和稠密向量的排名一致。</p>
+<p>搜索时间是0.022秒。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">搜索时间：0.022<br>content: 灵活的狐跳过了懒散的犬。<br>distance: 0.8730<br>--------------------------------------------------<br>content: 懒狗跳过了狐狸。<br>distance: 0.8716<br>--------------------------------------------------<br>content: 那只灵巧的狐狸轻松地跨过了那只懒散的狗。<br>distance: 0.8610<br>--------------------------------------------------<br>content: 一只敏捷的狐在公园里跳过了那只懒犬。<br>distance: 0.8609<br>--------------------------------------------------<br>content: 狐迅速地跳过了那只不活跃的犬。<br>distance: 0.8423<br>--------------------------------------------------<br>content: 犬跃过了狐。<br>distance: 0.8259<br>--------------------------------------------------<br>content: 在公园里，那只棕色的狐狸正在跳。<br>distance: 0.7865<br>--------------------------------------------------<br>content: 动物如狗和狐狸生活在公园里。<br>distance: 0.7738<br>--------------------------------------------------<br>content: 那只懈怠的犬正在大树下睡觉。<br>distance: 0.7163<br>--------------------------------------------------<br>content: 树下有一个小池塘。<br>distance: 0.5739<br>--------------------------------------------------<br>数量：10<br></code></pre></td></tr></table></figure>
+
+<p>接下来，我们来看看权重策略下的第一名，在 RRF 策略中表现如何。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">ranker = RRFRanker(k=<span class="hljs-number">10</span>)<br>res_rrf = perform_hybrid_search(collection_name, query, ranker, output_fields, limit_dense, limit_sparse, limit_hybrid)<br>print_vector_results(res_rrf)<br></code></pre></td></tr></table></figure>
+
+<p>“灵活的狐跳过了懒散的犬。”在 RRF 策略中的排名从第一下滑到了第四。因为这次注重的是排名，它在稠密向量中虽然排名第一，但是在稀疏向量中的排名只有第六，拉低了综合排名。</p>
+<p>排名第一是“懒狗跳过了狐狸。”，因为它在两个搜索结果中的排名都很高，分别是第二和第一。</p>
+<p>搜索时间是0.022秒，和权重策略的搜索时间差不多。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">搜索时间：0.022<br>content: 懒狗跳过了狐狸。<br>distance: 0.1742<br>--------------------------------------------------<br>content: 那只灵巧的狐狸轻松地跨过了那只懒散的狗。<br>distance: 0.1548<br>--------------------------------------------------<br>content: 一只敏捷的狐在公园里跳过了那只懒犬。<br>distance: 0.1538<br>--------------------------------------------------<br>content: 灵活的狐跳过了懒散的犬。<br>distance: 0.1534<br>--------------------------------------------------<br>content: 在公园里，那只棕色的狐狸正在跳。<br>distance: 0.1303<br>--------------------------------------------------<br>content: 狐迅速地跳过了那只不活跃的犬。<br>distance: 0.1255<br>--------------------------------------------------<br>content: 动物如狗和狐狸生活在公园里。<br>distance: 0.1222<br>--------------------------------------------------<br>content: 犬跃过了狐。<br>distance: 0.1181<br>--------------------------------------------------<br>content: 那只懈怠的犬正在大树下睡觉。<br>distance: 0.1053<br>--------------------------------------------------<br>content: 树下有一个小池塘。<br>distance: 0.0500<br>--------------------------------------------------<br>数量：10<br></code></pre></td></tr></table></figure>
+
+<p>终于，轮到我们最期待的重排模型上场了。其实，因为返回的搜索结果数量和文档中的句子数量相同，对任何一个搜索结果重排，或者直接对文档重排，效果都是一样的。不过，为了和实际应用中的粗排、重排流程一致，我们还是对粗排结果重排，比如稀疏向量的搜索结果。</p>
+<p>首先，我们要以字符串列表的形式，获取稀疏向量的搜索结果，以满足重排模型的输入要求。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 获取稀疏向量的搜索结果</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_init_res_list</span>(<span class="hljs-params">res, field_name</span>):<br>    res_list = []<br>    <span class="hljs-keyword">for</span> hits <span class="hljs-keyword">in</span> res:<br>        <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> hits:<br>            entity = hit.get(<span class="hljs-string">&quot;entity&quot;</span>)<br>            res_list.append(entity[field_name])<br>    <span class="hljs-keyword">return</span> res_list<br><br><span class="hljs-comment"># 为了显示重排的效果，我们对搜索结果最差的稀疏向量做重排</span><br>init_res_list = get_init_res_list(res_sparse, field_name)<br></code></pre></td></tr></table></figure>
+
+<p>接下来，定义重排模型。这里使用的是 bge_m3的重排模型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pymilvus.model.reranker <span class="hljs-keyword">import</span> BGERerankFunction<br><br><span class="hljs-comment"># 定义重排函数</span><br>bge_rf = BGERerankFunction(<br>    model_name=<span class="hljs-string">&quot;BAAI/bge-reranker-v2-m3&quot;</span>,<br>    device=<span class="hljs-string">&quot;cpu&quot;</span><br>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">perform_reranking</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span>, documents: <span class="hljs-built_in">list</span>, top_k: <span class="hljs-built_in">int</span> = <span class="hljs-number">10</span></span>) -&gt; <span class="hljs-built_in">list</span>:<br>    <span class="hljs-comment"># 获取重排结果</span><br>    start_time = time.time()<br>    rerank_res = bge_rf(<br>        <span class="hljs-comment"># query参数是字符串</span><br>        query=query[<span class="hljs-number">0</span>],<br>        <span class="hljs-comment"># documents参数是字符串列表</span><br>        documents=documents,<br>        top_k=top_k,<br>    )<br>    end_time = time.time()<br>    total_time = end_time - start_time<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;搜索时间：<span class="hljs-subst">&#123;total_time:<span class="hljs-number">.3</span>f&#125;</span>&quot;</span>)<br>    <br>    <span class="hljs-keyword">return</span> rerank_res<br><br>top_k = <span class="hljs-number">10</span><br>rerank_res = perform_reranking(query, init_res_list, top_k)<br></code></pre></td></tr></table></figure>
+
+<p>前面我提到过重排模型会花更多的时间，我们先对比下时间。第一次使用重排模型花了3.2秒，后面再使用一般用时0.4秒，这可能是因为第一次需要加载重排模型到内存中，花的时间较多。所以我们按照用时0.4秒计算。</p>
+<p>基于统计的重排用时在0.014-0.022秒之间，按照最慢的0.022秒计算。两者时间相差18倍。</p>
+<p>重排模型多花了这么多时间，效果怎么样呢？打印搜索结果看看吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> rerank_res:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;content: <span class="hljs-subst">&#123;hit.text&#125;</span>&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;score: <span class="hljs-subst">&#123;hit.score:<span class="hljs-number">.4</span>f&#125;</span>&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;-&quot;</span>*<span class="hljs-number">50</span>)<br></code></pre></td></tr></table></figure>
+
+<p>我对重排结果还是比较满意的。四个正确答案排在前四名，而且得分非常接近满分1分。而且，它们和其他搜索结果在得分上终于拉开了较大的差距。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">content: 灵活的狐跳过了懒散的犬。<br>score: 0.9998<br>--------------------------------------------------<br>content: 狐迅速地跳过了那只不活跃的犬。<br>score: 0.9997<br>--------------------------------------------------<br>content: 那只灵巧的狐狸轻松地跨过了那只懒散的狗。<br>score: 0.9987<br>--------------------------------------------------<br>content: 一只敏捷的狐在公园里跳过了那只懒犬。<br>score: 0.9980<br>--------------------------------------------------<br>content: 犬跃过了狐。<br>score: 0.3730<br>--------------------------------------------------<br>content: 懒狗跳过了狐狸。<br>score: 0.2702<br>--------------------------------------------------<br>content: 在公园里，那只棕色的狐狸正在跳。<br>score: 0.1924<br>--------------------------------------------------<br>content: 动物如狗和狐狸生活在公园里。<br>score: 0.0972<br>--------------------------------------------------<br>content: 那只懈怠的犬正在大树下睡觉。<br>score: 0.0059<br>--------------------------------------------------<br>content: 树下有一个小池塘。<br>score: 0.0000<br>--------------------------------------------------<br></code></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过对比我们发现，基于统计的重排速度快，准确性一般，适合追求高响应速度和低成本的场景，比如网页搜索、电商。</p>
+<p>它有权重和 RRF 两个策略。如果你更看重某种类型的搜索结果，建议使用权重策略。如果你没有明显的偏好，希望在不同搜索结果中，排名都靠前的结果能够胜出，建议使用 RRF 策略。</p>
+<p>基于深度学习的重排速度慢，但是准确性高，适合对回答准确性要求高的场景，比如专业知识库或者客服系统。</p>
+<h2 id="藏宝图"><a href="#藏宝图" class="headerlink" title="藏宝图"></a>藏宝图</h2><p>如果你还想了解更多重排的知识，可以参考下面的文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zilliz.com.cn/blog/rag-reranker-therole-and-tradeoffs">提高 RAG 应用准确度，时下流行的 Reranker 了解一下？</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/t_ybJrc_Dhi5keIsgqy1vg">一文玩转 Milvus 新特性之 Hybrid Search</a></li>
+<li><a target="_blank" rel="noopener" href="https://milvus.io/docs/rerankers-overview.md">Rerankers Overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/FlagOpen/FlagEmbedding/tree/master/FlagEmbedding/llm_reranker#model-list">BGE 重排模型-github</a></li>
+<li><a target="_blank" rel="noopener" href="https://milvus.io/docs/rerankers-bge.md">BGE重排模型在Milvus中的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://milvus.io/docs/rerankers-cross-encoder.md">Cross Encoder 重排模型在 Milvus 中的使用</a></li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zilliz.com.cn/blog/Hybrid-Search">一文玩转 Milvus 新特性之 Hybrid Search</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://milvus.io/docs/reranking.md#Weighted-Scoring-WeightedRanker">Reranking</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>语义搜索效果差？试试重排</div>
+      <div>http://example.com/2025/01/15/语义搜索效果差？试试重排/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>爱写作的CAE工程师</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月15日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/07/%E5%86%99%E7%BB%99%E6%96%B0%E8%AF%BB%E8%80%85%E7%9A%84%E5%AF%BC%E8%88%AA/" title="写给新读者的导航">
+                        <span class="hidden-mobile">写给新读者的导航</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

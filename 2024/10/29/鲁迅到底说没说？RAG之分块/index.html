@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile_picture.png">
+  <link rel="icon" href="/img/profile_picture.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="爱写作的CAE工程师">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="鲁迅说，“世上本没有路，走的人多了，也便成了路。”。鲁迅说，“我家墙外有两株树，一株是枣树，还有一株也是枣树。”鲁迅还说，“猛兽总是独行，牛羊才成群结对。”网络上流传着鲁迅说过的各种名言，我们不禁怀疑，鲁迅到底说没说？原文是什么样的，出处又在哪里？想回答这个问题，最好的办法就是搜索原文。但是，使用传统搜索方式，错了一个字可能就搜索不到，不如试试语义搜索吧。 我们可以把鲁迅作品集向量化，储存到向量数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="鲁迅到底说没说？RAG之分块">
+<meta property="og:url" content="http://example.com/2024/10/29/%E9%B2%81%E8%BF%85%E5%88%B0%E5%BA%95%E8%AF%B4%E6%B2%A1%E8%AF%B4%EF%BC%9FRAG%E4%B9%8B%E5%88%86%E5%9D%97/index.html">
+<meta property="og:site_name" content="江浩探索AI大陆">
+<meta property="og:description" content="鲁迅说，“世上本没有路，走的人多了，也便成了路。”。鲁迅说，“我家墙外有两株树，一株是枣树，还有一株也是枣树。”鲁迅还说，“猛兽总是独行，牛羊才成群结对。”网络上流传着鲁迅说过的各种名言，我们不禁怀疑，鲁迅到底说没说？原文是什么样的，出处又在哪里？想回答这个问题，最好的办法就是搜索原文。但是，使用传统搜索方式，错了一个字可能就搜索不到，不如试试语义搜索吧。 我们可以把鲁迅作品集向量化，储存到向量数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202410142156303.png">
+<meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202410082047910.png">
+<meta property="article:published_time" content="2024-10-29T03:28:02.000Z">
+<meta property="article:modified_time" content="2025-01-19T03:31:38.194Z">
+<meta property="article:author" content="江浩">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202410142156303.png">
+  
+  
+  
+  <title>鲁迅到底说没说？RAG之分块 - 江浩探索AI大陆</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>江浩探索AI大陆</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">鲁迅到底说没说？RAG之分块</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        爱写作的CAE工程师
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-29 11:28" pubdate>
+          2024年10月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">鲁迅到底说没说？RAG之分块</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>鲁迅说，“世上本没有路，走的人多了，也便成了路。”。<br>鲁迅说，“我家墙外有两株树，一株是枣树，还有一株也是枣树。”<br>鲁迅还说，“猛兽总是独行，牛羊才成群结对。”<br>网络上流传着鲁迅说过的各种名言，我们不禁怀疑，鲁迅到底说没说？原文是什么样的，出处又在哪里？想回答这个问题，最好的办法就是搜索原文。但是，使用传统搜索方式，错了一个字可能就搜索不到，不如试试语义搜索吧。</p>
+<p>我们可以把鲁迅作品集向量化，储存到向量数据库中。然后搜索某条据说是鲁迅说过的话，最后通过大模型组织语言输出回答，告诉我们鲁迅有没有说过这句话。如果有，再让它附上原文和出处。这个过程，就是 RAG（Retrieval-Augmented Generation，检索增强生成）。</p>
+<p>而对于较长的本文，直接向量化会导致信息缺失，需要把文本分割成多个块，分别向量化。打个比方，如果一篇文章是一张图片，组成文章的块就是图片的像素点。文章分割成的块越多，意味着图片的像素点越多，分辨率越高，图片也就越清晰。我会介绍三种常见的分块方法，并且比较基于它们的向量搜索和 RAG 响应有什么区别。</p>
+<p><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202410142156303.png" srcset="/img/loading.gif" lazyload></p>
+<p>图片来源：Photo by <a target="_blank" rel="noopener" href="https://unsplash.com/@exp00?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Master Unknown</a> on <a target="_blank" rel="noopener" href="https://unsplash.com/photos/a-mountain-range-is-reflected-in-the-still-water-of-a-lake-Vyy3Nnlm5Uc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+<blockquote>
+<p>本文首发于 Zilliz 公众号。文中代码的 Notebook 在<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1i-KkIlePQtqhHflIeRx2jA?pwd=fcpb">这里</a>下载。</p>
+</blockquote>
+<h2 id="字数太多怎么向量化"><a href="#字数太多怎么向量化" class="headerlink" title="字数太多怎么向量化"></a>字数太多怎么向量化</h2><p>在 [[01-如何假装文艺青年，怎么把大白话“变成”古诗词？]] 这篇文章中，我详细介绍了使用 Milvus 创建向量数据库的整个过程，相关内容我就不再赘述了，直接给出代码。</p>
+<p>版本说明：<br>Milvus 版本：&gt;&#x3D;2.5.0<br>pymilvus 版本：&gt;&#x3D;2.5.0</p>
+<p>定义函数 vectorize_query 把文本向量化的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> pymilvus.model.hybrid <span class="hljs-keyword">import</span> BGEM3EmbeddingFunction<br><br><span class="hljs-comment"># 初始化嵌入模型的实例</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">init_embedding_model</span>():<br>    <span class="hljs-comment"># 检查是否有可用的CUDA设备</span><br>    device = <span class="hljs-string">&quot;cuda:0&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span><br>    <span class="hljs-comment"># 根据设备选择是否使用fp16</span><br>    use_fp16 = device.startswith(<span class="hljs-string">&quot;cuda&quot;</span>)<br>    <span class="hljs-comment"># 创建嵌入模型实例</span><br>    bge_m3_ef = BGEM3EmbeddingFunction(<br>        model_name=<span class="hljs-string">&quot;BAAI/bge-m3&quot;</span>,<br>        device=device,<br>        use_fp16=use_fp16<br>    )<br>    <span class="hljs-keyword">return</span> bge_m3_ef<br><br><span class="hljs-comment"># 把文档向量化</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vectorize_docs</span>(<span class="hljs-params">docs, encoder</span>):<br>    <span class="hljs-comment"># 验证参数是否符合要求</span><br>    <span class="hljs-keyword">if</span> encoder <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;嵌入模型未初始化。&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (<span class="hljs-built_in">isinstance</span>(docs, <span class="hljs-built_in">list</span>) <span class="hljs-keyword">and</span> <span class="hljs-built_in">all</span>(<span class="hljs-built_in">isinstance</span>(text, <span class="hljs-built_in">str</span>) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> docs)):<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;docs必须为字符串列表。&quot;</span>)<br>    <span class="hljs-keyword">return</span> encoder.encode_documents(docs)<br><br>bge_m3_ef = init_embedding_model()<br></code></pre></td></tr></table></figure>
+
+<p>下一步就是把鲁迅作品集向量化了。但是且慢，让我们先看一下鲁迅作品集<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="鲁迅作品集数据基于 [luxun_dataset](https://github.com/sun510001/luxun_dataset) ，增加了一些字段。`luxun_sample.json` 为鲁迅部分作品，方便试用。`luxun.json` 为完整的鲁迅作品集。">[1]</span></a></sup>的文本格式：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span> <br>	<span class="hljs-punctuation">&#123;</span><br>		<span class="hljs-attr">&quot;book&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;伪自由书&quot;</span><span class="hljs-punctuation">,</span> <br>		<span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;最艺术的国家&quot;</span><span class="hljs-punctuation">,</span> <br>		<span class="hljs-attr">&quot;author&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;鲁迅&quot;</span><span class="hljs-punctuation">,</span> <br>		<span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span> <br>		<span class="hljs-attr">&quot;source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span> <br>		<span class="hljs-attr">&quot;date&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span> <br>		<span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人... </span><br><span class="hljs-string">	&#125;, </span><br><span class="hljs-string">	&#123;</span><br><span class="hljs-string">		&quot;</span>book<span class="hljs-string">&quot;: &quot;</span>伪自由书<span class="hljs-string">&quot;, </span><br><span class="hljs-string">		&quot;</span>title<span class="hljs-string">&quot;: &quot;</span>王道诗话<span class="hljs-string">&quot;, </span><br><span class="hljs-string">		&quot;</span>author<span class="hljs-string">&quot;: &quot;</span>鲁迅<span class="hljs-string">&quot;, </span><br><span class="hljs-string">		&quot;</span>type<span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;, </span><br><span class="hljs-string">		&quot;</span>source<span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;, </span><br><span class="hljs-string">		&quot;</span>date<span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;, </span><br><span class="hljs-string">		&quot;</span>content<span class="hljs-string">&quot;: &quot;</span>《人权论》是从鹦鹉开头的，据说古时候有一只高飞远走的鹦哥儿... <br>	<span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span> <br>	...<br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<p>文本中的“content”字段的值，就是一篇文章。有的文章字数多达几万字，用几百维的向量根本无法表达文章的语义细节。怎么办？就像前面说的，既然全文字数太多，我们就把文章切成几块，对每个块再做向量化。这个操作叫做“分块”。</p>
+<h2 id="根据固定字数分块"><a href="#根据固定字数分块" class="headerlink" title="根据固定字数分块"></a>根据固定字数分块</h2><p>最简单的分块方法是 <code>fixed_chunk</code>（固定分块），是按照字数分块，比如每隔150个字就分割一次。比如，对于《最艺术的国家》这篇文章使用 <code>fixed_chunk</code>，再通过 <a target="_blank" rel="noopener" href="https://chunkviz.up.railway.app/">ChunkViz</a> 把分块结果可视化，如下图所示：<br><img src="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202410082047910.png" srcset="/img/loading.gif" lazyload></p>
+<p>我们用代码来实现 <code>fixed_chunk</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br><br><span class="hljs-comment"># 固定分块</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fixed_chunk</span>(<span class="hljs-params"></span><br><span class="hljs-params">    input_file_path,</span><br><span class="hljs-params">    output_file_path, </span><br><span class="hljs-params">    chunk_size, </span><br><span class="hljs-params">    field_name</span><br><span class="hljs-params">    </span>):<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(input_file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        data_list = json.load(file)<br>        chunk_data_list = []<br>        <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:<br>            <span class="hljs-comment"># 获取指定字段的值</span><br>            text = data[field_name]<br>            <span class="hljs-comment"># 对指定字段分割</span><br>            chunks = [text[i:i + chunk_size] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(text), chunk_size)]<br>            <span class="hljs-keyword">for</span> idx, chunk <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(chunks):<br>                chunk_data_list.append(&#123;<br>                    <span class="hljs-comment"># 使用原始文章的 id 生成chunk的id</span><br>                    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;data[<span class="hljs-string">&quot;book&quot;</span>]&#125;</span>#<span class="hljs-subst">&#123;data[<span class="hljs-string">&quot;title&quot;</span>]&#125;</span>#chunk<span class="hljs-subst">&#123;idx&#125;</span>&#x27;</span>,<br>                    <span class="hljs-string">&quot;book&quot;</span> : data[<span class="hljs-string">&quot;book&quot;</span>],<br>                    <span class="hljs-string">&quot;title&quot;</span> : data[<span class="hljs-string">&quot;title&quot;</span>],<br>                    <span class="hljs-string">&quot;chunk&quot;</span> : chunk,<br>                    <span class="hljs-comment"># window 字段在这里只是占位，没有实际作用，后面会详细介绍它的用处</span><br>                    <span class="hljs-string">&quot;window&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>                    <span class="hljs-string">&quot;method&quot;</span>: <span class="hljs-string">&quot;fixed_chunk&quot;</span><br>                &#125;)<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(output_file_path, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> json_file:<br>            json.dump(chunk_data_list, json_file, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)<br><br><span class="hljs-comment"># 执行固定分块的函数</span><br>input_file_path = <span class="hljs-string">&quot;luxun_sample.json&quot;</span><br>output_file_path = <span class="hljs-string">&quot;luxun_sample_fixed_chunk.json&quot;</span><br>chunk_size = <span class="hljs-number">150</span><br>field_name = <span class="hljs-string">&quot;content&quot;</span><br><br>fixed_chunk(input_file_path, output_file_path, chunk_size, field_name)<br></code></pre></td></tr></table></figure>
+
+<p>运行代码，得到 <code>luxun_sample_fixed_chunk.json</code> 文件，格式和上文中的可视化结果一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[<br>    &#123;<br>        &quot;id&quot;: &quot;伪自由书 #最艺术的国家 #chunk0 &quot;,<br>        &quot;book&quot;: &quot;伪自由书&quot;,<br>        &quot;title&quot;: &quot;最艺术的国家&quot;,<br>        &quot;author&quot;: &quot;鲁迅&quot;,<br>        &quot;type&quot;: &quot;&quot;,<br>        &quot;source&quot;: &quot;&quot;,<br>        &quot;date&quot;: &quot;&quot;,<br>        &quot;chunk&quot;: &quot;我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人...&quot;,<br>        &quot;window&quot;: &quot;&quot;,<br>        &quot;method&quot;: &quot;fixed_chunk&quot;<br>    &#125;,<br>    &#123;<br>        &quot;id&quot;: &quot;伪自由书 #最艺术的国家 #chunk1 &quot;,<br>        &quot;book&quot;: &quot;伪自由书&quot;,<br>        &quot;title&quot;: &quot;最艺术的国家&quot;,<br>        &quot;author&quot;: &quot;鲁迅&quot;,<br>        &quot;type&quot;: &quot;&quot;,<br>        &quot;source&quot;: &quot;&quot;,<br>        &quot;date&quot;: &quot;&quot;,<br>        &quot;chunk&quot;: &quot;民国。然而这民国年久失修...&quot;,<br>        &quot;window&quot;: &quot;&quot;,<br>        &quot;method&quot;: &quot;fixed_chunk&quot;<br>    &#125;,<br>    ...<br>]<br></code></pre></td></tr></table></figure>
+
+<p>你可能已经发现了，<code>fixed_chunk</code> 经常在句子中间分割，导致句子不连贯，语义的完整性被破坏。</p>
+<h2 id="根据标点符号分割"><a href="#根据标点符号分割" class="headerlink" title="根据标点符号分割"></a>根据标点符号分割</h2><p>怎么解决这个问题呢？我们可以在标点符号处分割。但是这还不够，因为这样分割的话，块与块之间仍然是相互独立的了，缺少关联。打个比方，如果看《生活大爆炸》这样的单元剧，我们跳着看也没关系，不影响理解剧情。但是如果看《天龙八部》这样的连续剧，上一集讲的还是段誉为救钟灵去万劫谷拿解药，下一集他就瞬移到了少室山，用六脉神剑大战慕容复。我们会一头雾水，这中间到底发生了什么？</p>
+<p>所以，连续剧的开头有“前情提要”，结尾有“下集预告”。同样，为了保证块与块之间语义的连贯，我们也要设计一个“重叠”部分，让下一个块的开头部分，重复上一个块的结尾部分。</p>
+<p>听起来很复杂？不用担心，我们可以使用 LlamaIndex<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="LlamaIndex 是一个用于构建带有上下文增强功能的生成式 AI 应用的框架，支持大型语言模型（LLMs）。">[2]</span></a></sup> 库轻松实现这种分块方法—— <code>semantic_chunk</code> 。</p>
+<p>安装 LlamaIndex 库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install llama_index==0.11.16<br></code></pre></td></tr></table></figure>
+
+<p>定义 <code>semantic_chunk</code> 分块函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入SentenceSplitter用来分块</span><br><span class="hljs-keyword">from</span> llama_index.core.node_parser <span class="hljs-keyword">import</span> SentenceSplitter<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">semantic_chunk</span>(<span class="hljs-params"></span><br><span class="hljs-params">        input_file_path, </span><br><span class="hljs-params">        output_file_path, </span><br><span class="hljs-params">        <span class="hljs-comment"># 块的大小</span></span><br><span class="hljs-params">        chunk_size,</span><br><span class="hljs-params">        <span class="hljs-comment"># 重叠部分的大小</span></span><br><span class="hljs-params">        chunk_overlap,</span><br><span class="hljs-params">        <span class="hljs-comment"># 指定分块的字段</span></span><br><span class="hljs-params">        field_name,</span><br><span class="hljs-params">        </span>) :<br>    <span class="hljs-comment"># 初始化 SentenceSplitter，设置分块的参数</span><br>    text_splitter = SentenceSplitter(<br>        <span class="hljs-comment"># 指定段落分隔符</span><br>        paragraph_separator=<span class="hljs-string">&quot;\n\n\n&quot;</span>,<br>        <span class="hljs-comment"># 指定主要分隔符</span><br>        separator=<span class="hljs-string">&quot;。&quot;</span>,<br>        <span class="hljs-comment"># 指定次要分隔符</span><br>        secondary_chunking_regex=<span class="hljs-string">&quot;[^，.；、。：]+[，.；、。：]?&quot;</span>,<br>        <span class="hljs-comment"># 指定块的大小</span><br>        chunk_size=chunk_size, <br>        <span class="hljs-comment"># 指定重叠部分的大小</span><br>        chunk_overlap=chunk_overlap,<br>    )<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(input_file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        data_list = json.load(file)<br>        chunk_data_list = []<br>        <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:<br>            text = data[field_name]<br>            chunks = text_splitter.split_text(text)<br>            <span class="hljs-keyword">for</span> idx, chunk <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(chunks):<br>                chunk_data_list.append(&#123;<br>                    <span class="hljs-comment"># 使用原始文章的 id 生成chunk的id</span><br>                    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;data[<span class="hljs-string">&quot;book&quot;</span>]&#125;</span>#<span class="hljs-subst">&#123;data[<span class="hljs-string">&quot;title&quot;</span>]&#125;</span>#chunk<span class="hljs-subst">&#123;idx&#125;</span>&#x27;</span>,<br>                    <span class="hljs-string">&quot;book&quot;</span> : data[<span class="hljs-string">&quot;book&quot;</span>],<br>                    <span class="hljs-string">&quot;title&quot;</span> : data[<span class="hljs-string">&quot;title&quot;</span>],<br>                    <span class="hljs-string">&quot;chunk&quot;</span> : chunk,<br>                    <span class="hljs-comment"># window 字段在这里只是占位，没有实际作用，后面会详细介绍它的用处</span><br>                    <span class="hljs-string">&quot;window&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>                    <span class="hljs-string">&quot;method&quot;</span>: <span class="hljs-string">&quot;semantic_chunk&quot;</span><br>                &#125;)<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(output_file_path, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> json_file:<br>            json.dump(chunk_data_list, json_file, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)<br><br><span class="hljs-comment"># 执行标点符号分块</span><br>input_file_path = <span class="hljs-string">&quot;luxun_sample.json&quot;</span><br>output_file_path = <span class="hljs-string">&quot;luxun_sample_semantic_chunk.json&quot;</span><br>chunk_size = <span class="hljs-number">150</span><br>chunk_overlap = <span class="hljs-number">20</span><br>field_name = <span class="hljs-string">&quot;content&quot;</span><br><br>semantic_chunk(<br>    input_file_path, <br>    output_file_path, <br>    chunk_size, <br>    chunk_overlap,<br>    field_name<br>)<br></code></pre></td></tr></table></figure>
+
+<p>执行上面的代码，得到 <code>luxun_sample_semantic_chunk.json</code> 文件，我们来看一下分块的结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[<br>    &#123;<br>        &quot;id&quot;: &quot;伪自由书#最艺术的国家#chunk0&quot;,<br>        &quot;book&quot;: &quot;伪自由书&quot;,<br>        &quot;title&quot;: &quot;最艺术的国家&quot;,<br>        &quot;author&quot;: &quot;鲁迅&quot;,<br>        &quot;type&quot;: &quot;&quot;,<br>        &quot;source&quot;: &quot;&quot;,<br>        &quot;date&quot;: &quot;&quot;,<br>        &quot;chunk&quot;: &quot;我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人...中国的固有文化是科举制度，外加捐班之类。&quot;,<br>        &quot;window&quot;: &quot;&quot;,<br>        &quot;method&quot;: &quot;semantic_chunk&quot;<br>    &#125;,<br>    &#123;<br>        &quot;id&quot;: &quot;伪自由书#最艺术的国家#chunk1&quot;,<br>        &quot;book&quot;: &quot;伪自由书&quot;,<br>        &quot;title&quot;: &quot;最艺术的国家&quot;,<br>        &quot;author&quot;: &quot;鲁迅&quot;,<br>        &quot;type&quot;: &quot;&quot;,<br>        &quot;source&quot;: &quot;&quot;,<br>        &quot;date&quot;: &quot;&quot;,<br>        &quot;chunk&quot;: &quot;外加捐班之类。当初说这太不像民权...这对于民族是不忠，对于祖宗是不孝，&quot;,<br>        &quot;window&quot;: &quot;&quot;,<br>        &quot;method&quot;: &quot;semantic_chunk&quot;<br>    &#125;,<br>    ...<br>]<br></code></pre></td></tr></table></figure>
+
+<p>果然是在我们设置的标点符号处分块的，而且附带重叠部分，这样就能保证块与块之间语义的连贯了。</p>
+<h2 id="根据句子分块"><a href="#根据句子分块" class="headerlink" title="根据句子分块"></a>根据句子分块</h2><p>对于上面的分块结果，你可能还不满意。虽然它根据标点符号分割，但是并不一定在句号处分割，无法保证句子的完整性。比如，对于这句话 <code>我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人。这艺术的可贵，是在于两面光，或谓之“中庸”---男人看见“扮女人”，女人看见“男人扮”。</code> 可能分割成 <code>我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人。这艺术的可贵</code> 和 <code>是在于两面光，或谓之“中庸”---男人看见“扮女人”，女人看见“男人扮”</code> 两个块。</p>
+<p>为了解决这个问题，又诞生了一种分块方法，它根据句子而不是字数分割，也就是说，根据“。”、“！”和“？”这三个表示句子结束的标点符号分割，而不会受到字数的限制。但是，这种分割方式怎么实现重叠的功能呢？这也简单，把整个句子作为重叠部分就行了，叫做“窗口句子”。这种分块方法叫做 <code>window_chunk</code>。</p>
+<p>比如，对于句子 <code>ABCD</code>，设置窗口大小为1，表示原始句子的左右各1个句子为“窗口句子”。分块如下：<br>第一个句子：A。窗口句子：B。因为第一个句子的左边没有句子。<br>第二个句子：B。窗口句子：A 和 C。<br>第三个句子：C。窗口句子：B 和 D。<br>第四个句子：D。窗口句子：C。因为最后一个句子的右边没有句子。</p>
+<p>前面两种分块方法，都是对 chunk 字段向量化。而这种分块方法，除了对 chunk 字段（也就是原始句子）向量化外，还会把窗口句子作为原始句子的上下文，以元数据的形式储存在文件中。</p>
+<p>原始句子用来做向量搜索，而在生成回答时，窗口句子和原始句子会一起传递给大模型。这样做的好处是，只向量化原始句子，节省了储存空间。提供窗口句子作为原始句子的上下文，可以帮助大模型理解原始句子的语境。</p>
+<p>理解原理了，我们用代码来实现吧。</p>
+<p>导入依赖。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入句子分块需要的依赖</span><br><span class="hljs-keyword">import</span> re<br><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span><br><span class="hljs-keyword">from</span> llama_index.core <span class="hljs-keyword">import</span> Document<br><span class="hljs-keyword">from</span> llama_index.core.node_parser <span class="hljs-keyword">import</span> SentenceWindowNodeParser<br></code></pre></td></tr></table></figure>
+
+<p>定义函数 <code>split_text_into_sentences</code>，用来分割中英文句子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 分割中英文句子</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">split_text_into_sentences</span>(<span class="hljs-params">text</span>):<br>    <span class="hljs-comment"># 使用正则表达式识别中英文句子结束符</span><br>    sentence_endings = re.<span class="hljs-built_in">compile</span>(<span class="hljs-string">r&#x27;(?&lt;=[。！？.!?])&#x27;</span>)<br>    sentences = sentence_endings.split(text)<br>    <span class="hljs-keyword">return</span> [s.strip() <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> sentences <span class="hljs-keyword">if</span> s.strip()]<br></code></pre></td></tr></table></figure>
+
+<p>定义函数 <code>window_chunk</code>，基于句子对文本分块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 根据句子对文本分块</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">window_chunk</span>(<span class="hljs-params"></span><br><span class="hljs-params">        input_file_path, </span><br><span class="hljs-params">        output_file_path,</span><br><span class="hljs-params">        field_name,</span><br><span class="hljs-params">        window_size</span><br><span class="hljs-params">    </span>):<br>    <span class="hljs-comment"># 设置用于文本解析的节点解析器</span><br>    node_parser = SentenceWindowNodeParser.from_defaults(<br>        window_size=window_size,<br>        <span class="hljs-comment"># 为窗口元数据指定一个键名为&quot;window&quot;，用于在解析过程中存储窗口数据</span><br>        window_metadata_key=<span class="hljs-string">&quot;window&quot;</span>,<br>        <span class="hljs-comment"># 为原始文本元数据指定一个键名为&quot;original_text&quot;，用于在解析过程中存储原始文本</span><br>        original_text_metadata_key=<span class="hljs-string">&quot;original_text&quot;</span>,<br>        sentence_splitter = split_text_into_sentences<br>    )<br>    <br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(input_file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        data_list = json.load(file)<br>        chunk_data_list = []<br>        <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:<br>            text = data[field_name]<br>            <span class="hljs-comment"># 将分割后的句子处理成节点。节点包含多个句子，类似于块</span><br>            document = Document(text=text)<br>            nodes = node_parser.get_nodes_from_documents([document])<br>            <span class="hljs-keyword">for</span> idx, node <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(nodes):<br>                chunk = node.metadata[<span class="hljs-string">&quot;original_text&quot;</span>]<br>                window = node.metadata[<span class="hljs-string">&quot;window&quot;</span>]<br>                chunk_data_list.append(&#123;<br>                    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;data[<span class="hljs-string">&quot;book&quot;</span>]&#125;</span>#<span class="hljs-subst">&#123;data[<span class="hljs-string">&quot;title&quot;</span>]&#125;</span>#chunk<span class="hljs-subst">&#123;idx&#125;</span>&#x27;</span>,<br>                    <span class="hljs-string">&quot;book&quot;</span>: data[<span class="hljs-string">&quot;book&quot;</span>],<br>                    <span class="hljs-string">&quot;title&quot;</span>: data[<span class="hljs-string">&quot;title&quot;</span>],<br>                    <span class="hljs-string">&quot;chunk&quot;</span>: chunk,<br>                    <span class="hljs-string">&quot;window&quot;</span>: window,<br>                    <span class="hljs-string">&quot;method&quot;</span>: <span class="hljs-string">&quot;window_chunk&quot;</span><br>                &#125;)<br>        <br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(output_file_path, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> json_file:<br>            json.dump(chunk_data_list, json_file, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)<br><br><span class="hljs-comment"># 执行句子分块</span><br>input_file_path = <span class="hljs-string">&quot;luxun_sample.json&quot;</span><br>output_file_path = <span class="hljs-string">&quot;luxun_sample_window_chunk.json&quot;</span><br>field_name = <span class="hljs-string">&quot;content&quot;</span><br>window_size = <span class="hljs-number">1</span><br><br>window_chunk(<br>    input_file_path,<br>    output_file_path,<br>    field_name,<br>    window_size<br>)<br></code></pre></td></tr></table></figure>
+
+<p>让我们来看下分块的结果，字段“chunk”是原始句子，“window”里面包含了原始句子和窗口句子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[<br>    &#123;<br>        &quot;id&quot;: &quot;伪自由书#最艺术的国家#chunk0&quot;,<br>        &quot;book&quot;: &quot;伪自由书&quot;,<br>        &quot;title&quot;: &quot;最艺术的国家&quot;,<br>        &quot;author&quot;: &quot;鲁迅&quot;,<br>        &quot;type&quot;: &quot;&quot;,<br>        &quot;source&quot;: &quot;&quot;,<br>        &quot;date&quot;: &quot;&quot;,<br>        &quot;chunk&quot;: &quot;我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人。&quot;,<br>        &quot;window&quot;: &quot;我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人。 这艺术的可贵，是在于两面光，或谓之“中庸”---男人看见“扮女人”，女人看见“男人扮”。&quot;,<br>        &quot;method&quot;: &quot;window_chunk&quot;<br>    &#125;,<br>    &#123;<br>        &quot;id&quot;: &quot;伪自由书#最艺术的国家#chunk1&quot;,<br>        &quot;book&quot;: &quot;伪自由书&quot;,<br>        &quot;title&quot;: &quot;最艺术的国家&quot;,<br>        &quot;author&quot;: &quot;鲁迅&quot;,<br>        &quot;type&quot;: &quot;&quot;,<br>        &quot;source&quot;: &quot;&quot;,<br>        &quot;date&quot;: &quot;&quot;,<br>        &quot;chunk&quot;: &quot;这艺术的可贵，是在于两面光，或谓之“中庸”---男人看见“扮女人”，女人看见“男人扮”。&quot;,<br>        &quot;window&quot;: &quot;我们中国的最伟大最永久，而且最普遍的“艺术”是男人扮女人。 这艺术的可贵，是在于两面光，或谓之“中庸”---男人看见“扮女人”，女人看见“男人扮”。 表面上是中性，骨子里当然还是男的。&quot;,<br>        &quot;method&quot;: &quot;window_chunk&quot;<br>    &#125;,<br>    ...<br>]<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="创建向量数据库"><a href="#创建向量数据库" class="headerlink" title="创建向量数据库"></a>创建向量数据库</h2><p>文本分块完成，接下来就是文本向量化，导入向量数据库了，这部分你应该比较熟悉了，我直接给出代码。</p>
+<p>定义函数 vectorize_file，向量化 json 文件中指定的字段。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 向量化json文件中指定的字段</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vectorize_file</span>(<span class="hljs-params">input_file_path, encoder, field_name</span>):<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(input_file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        data_list = json.load(file)<br>        docs = [data[field_name] <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list]<br>    <span class="hljs-comment"># 向量化文档</span><br>    <span class="hljs-keyword">return</span> vectorize_docs(docs, encoder), data_list<br></code></pre></td></tr></table></figure>
+
+<p>为了比较 RAG 使用不同分块方法的效果，我们把三个分块文件全部向量化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 向量化固定分块的文件</span><br>fixed_vectors, fixed_data_list = vectorize_file(<span class="hljs-string">&quot;luxun_sample_fixed_chunk.json&quot;</span>, bge_m3_ef, <span class="hljs-string">&quot;chunk&quot;</span>)<br>fixed_dense_vectors = fixed_vectors[<span class="hljs-string">&#x27;dense&#x27;</span>]<br><br><span class="hljs-comment"># 向量化通过标点符号分块的文件</span><br>semantic_vectors, semantic_data_list = vectorize_file(<span class="hljs-string">&quot;luxun_sample_semantic_chunk.json&quot;</span>, bge_m3_ef, <span class="hljs-string">&quot;chunk&quot;</span>)<br>semantic_dense_vectors = semantic_vectors[<span class="hljs-string">&#x27;dense&#x27;</span>]<br><br><span class="hljs-comment"># 向量化通过句子分块的文件</span><br>window_vectors, window_data_list = vectorize_file(<span class="hljs-string">&quot;luxun_sample_window_chunk.json&quot;</span>, bge_m3_ef, <span class="hljs-string">&quot;chunk&quot;</span>)<br>window_dense_vectors = window_vectors[<span class="hljs-string">&#x27;dense&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<p>接下来创建集合。为了能够在同一个集合中区分三种分块方法的搜索结果，我们设置参数 <code>partition_key_field</code> 的值为 <code>method</code>，它表示采用的分块方法。Milvus 会根据 <code>method</code> 字段的值，把数据插入到对应的分区中。打个比方，如果把集合看作一个 excel 文件，partition （分区）就是表格的工作表（Worksheet）。一个 excel 文件包含多张工作表，不同的数据填写在对应的工作表中。相应的，我们把不同的数据插入到对应分区中，搜索时指定分区，就可以提高搜索效率。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建集合</span><br><span class="hljs-keyword">from</span> pymilvus <span class="hljs-keyword">import</span> MilvusClient, DataType<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-comment"># 删除同名集合</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_collection</span>(<span class="hljs-params">collection_name</span>):<br>    <span class="hljs-keyword">if</span> milvus_client.has_collection(collection_name):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;集合 <span class="hljs-subst">&#123;collection_name&#125;</span> 已经存在&quot;</span>)<br>        <span class="hljs-keyword">try</span>:<br>            milvus_client.drop_collection(collection_name)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;删除集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;删除集合时出现错误: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br><span class="hljs-comment"># 创建模式</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_schema</span>():<br>    schema = milvus_client.create_schema(<br>        auto_id=<span class="hljs-literal">False</span>,<br>        enable_dynamic_field=<span class="hljs-literal">True</span>,<br>        partition_key_field=<span class="hljs-string">&quot;method&quot;</span>,<br>        num_partitions=<span class="hljs-number">16</span>,<br>        description=<span class="hljs-string">&quot;&quot;</span><br>    )<br>    schema.add_field(field_name=<span class="hljs-string">&quot;id&quot;</span>, datatype=DataType.VARCHAR, is_primary=<span class="hljs-literal">True</span>, max_length=<span class="hljs-number">100</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;book&quot;</span>, datatype=DataType.VARCHAR, max_length=<span class="hljs-number">100</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;title&quot;</span>, datatype=DataType.VARCHAR, max_length=<span class="hljs-number">100</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;chunk&quot;</span>, datatype=DataType.VARCHAR, max_length=<span class="hljs-number">4000</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;window&quot;</span>, datatype=DataType.VARCHAR, max_length=<span class="hljs-number">6000</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;method&quot;</span>, datatype=DataType.VARCHAR, max_length=<span class="hljs-number">30</span>)<br>    schema.add_field(field_name=<span class="hljs-string">&quot;dense_vectors&quot;</span>, datatype=DataType.FLOAT_VECTOR, dim=<span class="hljs-number">1024</span>)<br>    <span class="hljs-keyword">return</span> schema<br><br><span class="hljs-comment"># 创建集合</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_collection</span>(<span class="hljs-params">collection_name, schema, timeout</span>):<br>    <span class="hljs-keyword">try</span>:<br>        milvus_client.create_collection(<br>            collection_name=collection_name,<br>            schema=schema,<br>            shards_num=<span class="hljs-number">2</span><br>        )<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;开始创建集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;创建集合的过程中出现了错误: <span class="hljs-subst">&#123;e&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>    <span class="hljs-comment"># 检查集合是否创建成功</span><br>    start_time = time.time()<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-keyword">if</span> milvus_client.has_collection(collection_name):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;集合 <span class="hljs-subst">&#123;collection_name&#125;</span> 创建成功&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">elif</span> time.time() - start_time &gt; timeout:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;创建集合 <span class="hljs-subst">&#123;collection_name&#125;</span> 超时&quot;</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>        time.sleep(<span class="hljs-number">1</span>)<br><br>collection_name = <span class="hljs-string">&quot;LuXunWorks_sample&quot;</span><br>uri=<span class="hljs-string">&quot;http://localhost:19530&quot;</span><br>milvus_client = MilvusClient(uri=uri)<br>timeout = <span class="hljs-number">10</span><br><br><span class="hljs-comment"># 检查并删除集合</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> check_collection(collection_name):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;无法删除集合 <span class="hljs-subst">&#123;collection_name&#125;</span>，停止创建。&quot;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-comment"># 创建集合的模式</span><br>    schema = create_schema()<br>    <span class="hljs-comment"># 创建集合并等待成功</span><br>    create_collection(collection_name, schema, timeout)<br></code></pre></td></tr></table></figure>
+
+<p>把数据插入到向量数据库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">insert_data</span>(<span class="hljs-params"></span><br><span class="hljs-params">    collection_name,</span><br><span class="hljs-params">    data_list,</span><br><span class="hljs-params">    dense_vectors,</span><br><span class="hljs-params">    batch_size=<span class="hljs-number">1000</span></span>):         <br>    <span class="hljs-comment"># 接收稠密向量</span><br>    <span class="hljs-keyword">for</span> data, dense_vector <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(data_list, dense_vectors):<br>        data[<span class="hljs-string">&#x27;dense_vectors&#x27;</span>] = dense_vector<br><br>    <span class="hljs-comment"># 分批入库</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;正在将数据插入集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>    total_count = <span class="hljs-built_in">len</span>(data_list)<br>    <span class="hljs-keyword">with</span> tqdm(total=total_count, desc=<span class="hljs-string">&quot;插入数据&quot;</span>) <span class="hljs-keyword">as</span> progress_bar:<br>        <span class="hljs-comment"># 每次插入 batch_size 条数据</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, total_count, batch_size):  <br>            batch_data = data_list[i:i + batch_size]<br>            res = milvus_client.insert(<br>                collection_name=collection_name,<br>                data=batch_data<br>            )<br>            progress_bar.update(<span class="hljs-built_in">len</span>(batch_data))<br><br>insert_data(collection_name, fixed_data_list, dense_vectors=fixed_dense_vectors)<br>insert_data(collection_name, semantic_data_list, dense_vectors=semantic_dense_vectors)<br>insert_data(collection_name, window_data_list, dense_vectors=window_dense_vectors)<br></code></pre></td></tr></table></figure>
+
+<p>创建索引。我们使用倒排索引，首先创建索引参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">index_params = milvus_client.prepare_index_params()<br><br>index_params.add_index(<br>    <span class="hljs-comment"># 指定索引名称</span><br>    index_name=<span class="hljs-string">&quot;IVF_FLAT&quot;</span>,<br>    <span class="hljs-comment"># 指定创建索引的字段</span><br>    field_name=<span class="hljs-string">&quot;dense_vectors&quot;</span>,<br>    <span class="hljs-comment"># 设置索引类型</span><br>    index_type=<span class="hljs-string">&quot;IVF_FLAT&quot;</span>,<br>    <span class="hljs-comment"># 设置度量方式</span><br>    metric_type=<span class="hljs-string">&quot;IP&quot;</span>,<br>    <span class="hljs-comment"># 设置索引聚类中心的数量</span><br>    params=&#123;<span class="hljs-string">&quot;nlist&quot;</span>: <span class="hljs-number">128</span>&#125;<br>)<br></code></pre></td></tr></table></figure>
+
+<p>接下来创建索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">milvus_client.create_index(<br>    <span class="hljs-comment"># 指定为创建索引的集合</span><br>    collection_name=collection_name,<br>    <span class="hljs-comment"># 使用前面创建的索引参数创建索引</span><br>    index_params=index_params<br>)<br></code></pre></td></tr></table></figure>
+
+<p>验证下索引是否成功创建。查看集合的所有索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">res = milvus_client.list_indexes(<br>    collection_name=collection_name<br>)<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+
+<p>返回我们创建的索引 <code>[&#39;IVF_FLAT&#39;]</code>。再查看下索引的详细信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">res = milvus_client.describe_index(<br>    collection_name=collection_name,<br>    index_name=<span class="hljs-string">&quot;IVF_FLAT&quot;</span><br>)<br><span class="hljs-built_in">print</span>(res)<br></code></pre></td></tr></table></figure>
+
+<p>返回下面的索引信息，表示索引创建成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#123;&#x27;nlist&#x27;: &#x27;128&#x27;, &#x27;index_type&#x27;: &#x27;IVF_FLAT&#x27;, &#x27;metric_type&#x27;: &#x27;IP&#x27;, &#x27;field_name&#x27;: &#x27;dense_vectors&#x27;, &#x27;index_name&#x27;: &#x27;IVF_FLAT&#x27;, &#x27;total_rows&#x27;: 0, &#x27;indexed_rows&#x27;: 0, &#x27;pending_index_rows&#x27;: 0, &#x27;state&#x27;: &#x27;Finished&#x27;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>接下来加载集合到内存。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span> (<span class="hljs-string">f&quot;正在加载集合：<span class="hljs-subst">&#123;collection_name&#125;</span>&quot;</span>)<br>milvus_client.load_collection (collection_name=collection_name)<br></code></pre></td></tr></table></figure>
+
+<p>验证下加载状态。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span> (milvus_client.get_load_state (collection_name=collection_name))<br></code></pre></td></tr></table></figure>
+
+<p>如果返回 <code>&#123;&#39;state&#39;: &lt;LoadState: Loaded&gt;&#125;</code>，说明加载完成。接下来，我们定义搜索函数。</p>
+<p>先定义搜索参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">search_params = &#123;<br>    <span class="hljs-comment"># 度量类型</span><br>    <span class="hljs-string">&quot;metric_type&quot;</span>: <span class="hljs-string">&quot;IP&quot;</span>,<br>    <span class="hljs-comment"># 搜索过程中要查询的聚类单元数量。增加nprobe值可以提高搜索精度，但会降低搜索速度</span><br>    <span class="hljs-string">&quot;params&quot;</span>: &#123;<span class="hljs-string">&quot;nprobe&quot;</span>: <span class="hljs-number">16</span>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>再定义搜索函数。还记得前面我们在创建集合时，设置的 <code>partition_key_field</code> 吗？它会根据 <code>method</code> 字段的值，把数据插入到相应的分区中。而搜索函数中的 <code>filter</code> 参数，就是用来指定在哪个分区中搜索的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 把查询向量化</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vectorize_query</span>(<span class="hljs-params">query, encoder</span>):<br>    <span class="hljs-comment"># 验证参数是否符合要求</span><br>    <span class="hljs-keyword">if</span> encoder <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;嵌入模型未初始化。&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (<span class="hljs-built_in">isinstance</span>(query, <span class="hljs-built_in">list</span>) <span class="hljs-keyword">and</span> <span class="hljs-built_in">all</span>(<span class="hljs-built_in">isinstance</span>(text, <span class="hljs-built_in">str</span>) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> query)):<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;query必须为字符串列表。&quot;</span>)<br>    <span class="hljs-keyword">return</span> encoder.encode_queries(query)<br><br><span class="hljs-comment"># 搜索函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">vector_search</span>(<span class="hljs-params"></span><br><span class="hljs-params">        query, </span><br><span class="hljs-params">        search_params,</span><br><span class="hljs-params">        limit,</span><br><span class="hljs-params">        output_fields,</span><br><span class="hljs-params">        partition_name</span><br><span class="hljs-params">    </span>):<br>    <span class="hljs-comment"># 将查询转换为向量</span><br>    query_vectors = [vectorize_query(query, bge_m3_ef)[<span class="hljs-string">&#x27;dense&#x27;</span>][<span class="hljs-number">0</span>]]<br>    <span class="hljs-comment"># 向量搜索</span><br>    res = milvus_client.search(<br>        collection_name=collection_name,<br>        <span class="hljs-comment"># 指定查询向量</span><br>        data=query_vectors,<br>        <span class="hljs-comment"># 指定搜索的字段</span><br>        anns_field=<span class="hljs-string">&quot;dense_vectors&quot;</span>,<br>        <span class="hljs-comment"># 设置搜索参数</span><br>        search_params=search_params,<br>        <span class="hljs-comment"># 设置搜索结果的数量</span><br>        limit=limit,<br>        <span class="hljs-comment"># 设置输出字段</span><br>        output_fields=output_fields,<br>        <span class="hljs-comment"># 在指定分区中搜索</span><br>        <span class="hljs-built_in">filter</span>=<span class="hljs-string">f&quot;method ==&#x27;<span class="hljs-subst">&#123;partition_name&#125;</span>&#x27;&quot;</span><br>    )<br>    <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+<p>再定义一个打印搜索结果的函数，方便查看。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 打印向量搜索结果</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_vector_results</span>(<span class="hljs-params">res</span>):<br>    <span class="hljs-comment"># hit是搜索结果中的每一个匹配的实体</span><br>    res = [hit[<span class="hljs-string">&quot;entity&quot;</span>] <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> res[<span class="hljs-number">0</span>]]<br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> res:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;title: <span class="hljs-subst">&#123;item[<span class="hljs-string">&#x27;title&#x27;</span>]&#125;</span>&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;chunk: <span class="hljs-subst">&#123;item[<span class="hljs-string">&#x27;chunk&#x27;</span>]&#125;</span>&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;method: <span class="hljs-subst">&#123;item[<span class="hljs-string">&#x27;method&#x27;</span>]&#125;</span>&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;-&quot;</span>*<span class="hljs-number">50</span>)   <br></code></pre></td></tr></table></figure>
+
+<p>下面我们就来看一看，<code>fixed_chunk</code>、<code>semantic_chunk</code> 和 <code>window_chunk</code> 三位选手在向量搜索上表现如何。首先搜索第一个句子：“世上本没有路，走的人多了，也便成了路。”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 比较不同分块方法产生的搜索结果</span><br>query1 = [<span class="hljs-string">&quot;世上本没有路，走的人多了，也便成了路。&quot;</span>]<br>limit = <span class="hljs-number">1</span><br>output_fields = [<span class="hljs-string">&quot;title&quot;</span>, <span class="hljs-string">&quot;chunk&quot;</span>, <span class="hljs-string">&quot;window&quot;</span>, <span class="hljs-string">&quot;method&quot;</span>]<br><br><span class="hljs-comment"># 定义分块方法列表</span><br>chunk_methods = [<span class="hljs-string">&quot;fixed_chunk&quot;</span>, <span class="hljs-string">&quot;semantic_chunk&quot;</span>, <span class="hljs-string">&quot;window_chunk&quot;</span>]<br><br><span class="hljs-comment"># 定义一个函数来执行搜索并打印结果</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">compare_chunk_methods</span>(<span class="hljs-params">query, search_params, limit, output_fields, methods</span>):<br>    <span class="hljs-keyword">for</span> method <span class="hljs-keyword">in</span> methods:<br>        res = vector_search(query, search_params, limit, output_fields, method)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;method&#125;</span> 的搜索结果是：\n&quot;</span>)<br>        print_vector_results(res)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;*&quot;</span> * <span class="hljs-number">50</span>)<br><br><span class="hljs-comment"># 调用函数进行比较</span><br>compare_chunk_methods(query1, search_params, limit, output_fields, chunk_methods)<br></code></pre></td></tr></table></figure>
+
+<p><code>fixed_chunk</code> 选手的确搜索到了原文，但是并不完整。这也是 <code>fixed_chunk</code> 分块的典型问题。</p>
+<p>搜索结果如下：</p>
+<blockquote>
+<p>的人多了，也便成了路。一九二一年一月。 </p>
+</blockquote>
+<p><code>semantic_chunk</code> 选手的表现让人失望，它并没有搜索到原文。它的搜索结果是：</p>
+<blockquote>
+<p>跨过了灭亡的人们向前进。什么是路？就是从没路的地方践踏出来的，从只有荆棘的地方开辟出来的。以前早有路了，以后也该永远有路。人类总不会寂寞，因为生命是进步的，是乐天的。昨天，我对我的朋友 L 说，“一个人死了，在死者自身和他的眷属是悲惨的事，</p>
+</blockquote>
+<p>但是它给我们带来了意外收获，搜索结果的意思和原文有些类似。这也是向量数据库语义搜索功能的体现。</p>
+<p>原文其实在这个块中：</p>
+<blockquote>
+<p>“我的愿望茫远罢了。我在朦胧中，眼前展开一片海边碧绿的沙地来，上面深蓝的天空中挂着一轮金黄的圆月。我想：希望本是无所谓有，无所谓无的。这正如地上的路；其实地上本没有路，走的人多了，也便成了路。一九二一年一月。”</p>
+</blockquote>
+<p><code>semantic_chunk</code> 选手没有搜索到它，可能是因为这个块的前半部分和查询句子的语义相差较远。这也反应了分块对搜索结果的影响。</p>
+<p>最后出场的 <code>window_chunk</code> 选手，给出了标准答案：</p>
+<blockquote>
+<p>这正如地上的路；其实地上本没有路，走的人多了，也便成了路。</p>
+</blockquote>
+<p>恭喜 <code>window_chunk</code> 选手完美找到了原文。因为它基于句子分割，能够更好地保存句子的语义。</p>
+<p>我们再来看看第二个句子，三位选手的表现如何。搜索句子：“我家墙外有两株树，一株是枣树，还有一株也是枣树。”</p>
+<p><code>fixed_chunk</code> 选手给出的句子仍然不完整，但是包含了完整的原文：</p>
+<blockquote>
+<p>在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。这上面的夜的天空，奇怪而高，我生平没有见过这样的奇怪而高的天空。他仿佛要离开人间而去，使人们仰面不再看见。然而现在却非常之蓝，闪闪地䀹着几十个星星的眼，冷眼。他的口角上现出微笑，似乎自以为大有深意，而将繁霜洒在我的园里的野花草上。我不知</p>
+</blockquote>
+<p><code>semantic_chunk</code> 选手这次正常发挥，也找到了原文：</p>
+<blockquote>
+<p>在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。这上面的夜的天空，奇怪而高，我生平没有见过这样的奇怪而高的天空。他仿佛要离开人间而去，使人们仰面不再看见。然而现在却非常之蓝，闪闪地䀹着几十个星星的眼，冷眼。他的口角上现出微笑，</p>
+</blockquote>
+<p><code>window_chunk</code> 选手依旧给出了完美答案：</p>
+<blockquote>
+<p>在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。</p>
+</blockquote>
+<p>虽然三位选手都找到了原文，但是 <code>window_chunk</code> 选手返回的原文不但完整，而且没有包含无关内容，减少了干扰信息。</p>
+<p>再来看看最后一个句子：</p>
+<blockquote>
+<p>“猛兽总是独行，牛羊才成群结对。”</p>
+</blockquote>
+<p><code>fixed_chunk</code> 选手找到了类似的句子，但是包含了较多的无关内容：</p>
+<blockquote>
+<p>兽是单独的，牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。人民与牛马同流，——此就中国而言，夷人别有分类法云，——治之之道，自然应该禁止集合：这方法是对的。其次要防说话。人能说话，已经是祸胎了，而况有时还要做文章。所以苍颉造字，夜有鬼哭。鬼且反对，而况于官？猴子不会说话</p>
+</blockquote>
+<p><code>semantic_chunk</code> 和 <code>fixed_chunk</code> 表现类似：</p>
+<blockquote>
+<p>牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。人民与牛马同流，——此就中国而言，夷人别有分类法云，——治之之道，自然应该禁止集合：这方法是对的。其次要防说话。人能说话，已经是祸胎了，而况有时还要做文章。所以苍颉造字，夜有鬼哭。</p>
+</blockquote>
+<p>我们最后看看 <code>window_chunk</code> 选手的表现：</p>
+<blockquote>
+<p>猛兽是单独的，牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。</p>
+</blockquote>
+<p>别忘了 <code>window_chunk</code> 选手除了搜索到的原始句子，还能提供“窗口句子”作为上下文：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 查看`window_chunk`方法的窗口句子</span><br>method = <span class="hljs-string">&quot;window_chunk&quot;</span><br>res_window_chunk = vector_search(query3, search_params, limit, output_fields, method)<br>res_window_chunk = [hit[<span class="hljs-string">&quot;entity&quot;</span>] <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> res_window_chunk[<span class="hljs-number">0</span>]]<br><span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> res_window_chunk:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;window: <span class="hljs-subst">&#123;item[<span class="hljs-string">&#x27;window&#x27;</span>]&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>窗口句子如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">window: 然亦可见至道嘉猷，人同此心，心同此理，固无华夷之限也。 猛兽是单独的，牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。 人民与牛马同流，——此就中国而言，夷人别有分类法云，——治之之道，自然应该禁止集合：这方法是对的。<br></code></pre></td></tr></table></figure>
+
+<p>在 RAG 应用中，把上下文句子一起传递给大模型，能让大模型更好地理解句子的语义，作出更好的回答。</p>
+<h2 id="调用大模型的-API"><a href="#调用大模型的-API" class="headerlink" title="调用大模型的 API"></a>调用大模型的 API</h2><p>创建向量数据库这部分想必你已经轻车熟路了，下面我们来完成 RAG 应用的最后一个部分：生成。我们要把搜索到的句子传递给大模型，让它根据提示词重新组装成回答。</p>
+<p>首先，我们要创建一个大模型的 api key，用来调用大模型。我使用的是 <a target="_blank" rel="noopener" href="https://platform.deepseek.com/api_keys">deepseek</a>。为了保护 api key 的安全，把 api key 设置为环境变量“DEEPSEEK_API_KEY”。请把 <code>&lt;you_api_key&gt;</code> 替换成你自己的 api key。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.environ[<span class="hljs-string">&#x27;DEEPSEEK_API_KEY&#x27;</span>] = &lt;you_api_key&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后，再从环境变量中读取 api key。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">deepseek_api_key = os.getenv(<span class="hljs-string">&quot;DEEPSEEK_API_KEY&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>deepseek 使用与 OpenAI 兼容的 API 格式，我们可以使用 OpenAI SDK 来访问 DeepSeek API。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">安装 openai 库</span><br>pip install openai<br></code></pre></td></tr></table></figure>
+
+<p>接下来创建 openai 客户端实例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入openai库</span><br><span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> OpenAI<br><br><span class="hljs-comment"># 导入os库</span><br><span class="hljs-keyword">import</span> os<br><br><span class="hljs-comment"># 创建openai客户端实例</span><br>OpenAI_client = OpenAI(api_key=deepseek_api_key, base_url=<span class="hljs-string">&quot;https://api.deepseek.com&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>根据 <a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/zh-cn/">deepseek api 文档</a>的说明，定义生成响应的函数 <code>generate_response</code>。<code>model</code> 是我们使用的大模型，这里是 <code>deepseek-chat</code>。<code>temperature</code> 决定大模型回答的随机性，数值在0-2之间，数值越高，生成的文本越随机；值越低，生成的文本越确定。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义生成响应的函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_response</span>(<span class="hljs-params"></span><br><span class="hljs-params">        system_prompt, </span><br><span class="hljs-params">        user_prompt, </span><br><span class="hljs-params">        model, </span><br><span class="hljs-params">        temperature</span><br><span class="hljs-params">    </span>):<br>    <span class="hljs-comment"># 大模型的响应</span><br>    response = OpenAI_client.chat.completions.create(<br>        model=model,<br>        messages=[<br>            <span class="hljs-comment"># 设置系统信息，通常用于设置模型的行为、角色或上下文。</span><br>            &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: system_prompt&#125;,<br>            <span class="hljs-comment"># 设置用户消息，用户消息是用户发送给模型的消息。</span><br>            &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: user_prompt&#125;,<br>        ],<br>        <span class="hljs-comment"># 设置温度</span><br>        temperature=temperature,  <br>        stream=<span class="hljs-literal">True</span><br>    )<br>    <span class="hljs-comment"># 遍历响应中的每个块</span><br>    <span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> response:<br>        <span class="hljs-comment"># 检查块中是否包含选择项</span><br>        <span class="hljs-keyword">if</span> chunk.choices:<br>            <span class="hljs-comment"># 打印选择项中的第一个选项的增量内容，并确保立即刷新输出</span><br>            <span class="hljs-built_in">print</span>(chunk.choices[<span class="hljs-number">0</span>].delta.content, end=<span class="hljs-string">&quot;&quot;</span>, flush=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<p>响应函数接收的参数中，<code>system_prompt</code> 是系统提示词，主要用于设置模型的行为、角色或上下文。你可以理解为这是系统给大模型的提示词，而且始终有效。我们可以使用下面的提示词规范大模型的响应：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">system_prompt = <span class="hljs-string">&quot;你是鲁迅作品研究者，熟悉鲁迅的各种作品。&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>user_prompt</code> 是用户提示词，是用户发给大模型的。大模型会在系统提示词和用户提示词的共同作用下，生成响应。用户提示词由查询句子 <code>query</code> 和向量数据库搜索到的句子组成。对于 <code>fixed_chunk</code> 和 <code>semantic_chunk</code>，我们需要获取 <code>chunk</code> 字段的值。对于 <code>window_chunk</code>，我们需要获取 <code>window</code> 字段的值。定义下面的函数可以帮助我们方便获取想要的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_ref_info</span> (query, search_params, limit, output_fields, method):<br>    res = vector_search (query, search_params, limit, output_fields, method)<br>    <span class="hljs-keyword">for</span> hit <span class="hljs-keyword">in</span> res[<span class="hljs-number">0</span>]:<br>        ref_info = &#123;<br>            <span class="hljs-string">&quot;ref&quot;</span>: hit[<span class="hljs-string">&quot;entity&quot;</span>][<span class="hljs-string">&quot;window&quot;</span>] <span class="hljs-keyword">if</span> method == <span class="hljs-string">&quot;window_chunk&quot;</span> <span class="hljs-keyword">else</span> hit[<span class="hljs-string">&quot;entity&quot;</span>][<span class="hljs-string">&quot;chunk&quot;</span>],<br>            <span class="hljs-string">&quot;title&quot;</span>: hit[<span class="hljs-string">&quot;entity&quot;</span>][<span class="hljs-string">&quot;title&quot;</span>]<br>        &#125;<br>    <span class="hljs-keyword">return</span> ref_info<br></code></pre></td></tr></table></figure>
+
+<p>最后，针对不同的分块方法，获取对应的响应。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> method <span class="hljs-keyword">in</span> chunk_methods:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;分块方法: <span class="hljs-subst">&#123;method&#125;</span>&quot;</span>)<br>    <span class="hljs-comment"># 获取参考信息</span><br>    ref_info = get_ref_info(query, search_params, limit, output_fields, method)<br>    <span class="hljs-comment"># 生成用户提示词</span><br>    user_prompt = (<br>        <span class="hljs-string">f&quot;请你根据提供的参考信息，查找是否有与问题语义相似的内容。参考信息：<span class="hljs-subst">&#123;ref_info&#125;</span>。问题：<span class="hljs-subst">&#123;query&#125;</span>。\n&quot;</span><br>        <span class="hljs-string">f&quot;如果找到了相似的内容，请回复“鲁迅的确说过类似的话，原文是[原文内容]，这句话来自[文章标题]”。\n&quot;</span><br>        <span class="hljs-string">f&quot;[原文内容]是参考信息中ref字段的值，[文章标题]是参考信息中title字段的值。如果引用它们，请引用完整的内容。\n&quot;</span><br>        <span class="hljs-string">f&quot;如果参考信息没有提供和问题相关的内容，请回答“据我所知，鲁迅并没有说过类似的话。”&quot;</span><br>)<br>    <span class="hljs-comment"># 生成响应</span><br>    generate_response(system_prompt, user_prompt, model, temperature)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n&quot;</span> + <span class="hljs-string">&quot;*&quot;</span> * <span class="hljs-number">50</span> + <span class="hljs-string">&quot;\n&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>好啦，一切准备就绪，让我们看看使用不同分块方法的 RAG，究竟有什么区别。先看第一句话，“世上本没有路，走的人多了，也便成了路。”，搜索结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">分块方法: fixed_chunk<br>鲁迅的确说过类似的话，原文是“的人多了，也便成了路。 一九二一年一月。”，这句话来自《故乡》。<br>**************************************************<br><br>分块方法: semantic_chunk<br>鲁迅的确说过类似的话，原文是“跨过了灭亡的人们向前进。什么是路？就是从没路的地方践踏出来的，从只有荆棘的地方开辟出来的。以前早有路了，以后也该永远有路。人类总不会寂寞，因为生命是进步的，是乐天的。昨天，我对我的朋友L说，‘一个人死了，在死者自身和他的眷属是悲惨的事，”，这句话来自《六十六生命的路》。<br>**************************************************<br><br>分块方法: window_chunk<br>鲁迅的确说过类似的话，原文是“我想：希望本是无所谓有，无所谓无的。 这正如地上的路；其实地上本没有路，走的人多了，也便成了路。 一九二一年一月。”，这句话来自《故乡》。<br>**************************************************<br></code></pre></td></tr></table></figure>
+
+<p><code>fixed_chunk</code> 选手虽然给出了原文，但是遗憾的是不够完整。<code>semantic_chunk</code> 选手没有搜索到原文，但是给出的句子语义也和原文类似，算是意外收获。而 <code>window_chunk</code> 选手则给出了标准答案。</p>
+<p>再来看看第二句，“我家墙外有两株树，一株是枣树，还有一株也是枣树。”搜索结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">分块方法: fixed_chunk<br>鲁迅的确说过类似的话，原文是在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。这上面的夜的天空，奇怪而高，我生平没有见过这样的奇怪而高的天空。他仿佛要离开人间而去，使人们仰面不再看见。然而现在却非常之蓝，闪闪地䀹着几十个星星的眼，冷眼。他的口角上现出微笑，似乎自以为大有深意，而将繁霜洒在我的园里的野花草上。我不知，这句话来自秋夜。<br>**************************************************<br><br>分块方法: semantic_chunk<br>鲁迅的确说过类似的话，原文是“在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。这上面的夜的天空，奇怪而高，我生平没有见过这样的奇怪而高的天空。他仿佛要离开人间而去，使人们仰面不再看见。然而现在却非常之蓝，闪闪地䀹着几十个星星的眼，冷眼。他的口角上现出微笑，”，这句话来自《秋夜》。<br>**************************************************<br><br>分块方法: window_chunk<br>鲁迅的确说过类似的话，原文是“在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。 这上面的夜的天空，奇怪而高，我生平没有见过这样的奇怪而高的天空。”，这句话来自《秋夜》。<br>**************************************************<br></code></pre></td></tr></table></figure>
+
+<p>三位选手表现差不多，<code>window_chunk</code> 选手给出的结果更精准。</p>
+<p>最后来看看第三句，“猛兽总是独行，牛羊才成群结对。”搜索结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">分块方法: fixed_chunk<br>鲁迅的确说过类似的话，原文是“兽是单独的，牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。人民与牛马同流，——此就中国而言，夷人别有分类法云，——治之之道，自然应该禁止集合：这方法是对的。其次要防说话。人能说话，已经是祸胎了，而况有时还要做文章。所以苍颉造字，夜有鬼哭。鬼且反对，而况于官？猴子不会说话”，这句话来自《春末闲谈》。<br>**************************************************<br><br>分块方法: semantic_chunk<br>鲁迅的确说过类似的话，原文是“牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。人民与牛马同流，——此就中国而言，夷人别有分类法云，——治之之道，自然应该禁止集合：这方法是对的。其次要防说话。人能说话，已经是祸胎了，而况有时还要做文章。所以苍颉造字，夜有鬼哭。”，这句话来自《春末闲谈》。<br>**************************************************<br><br>分块方法: window_chunk<br>鲁迅的确说过类似的话，原文是“猛兽是单独的，牛羊则结队；野牛的大队，就会排角成城以御强敌了，但拉开一匹，定只能牟牟地叫。”，这句话来自《春末闲谈》。<br>**************************************************<br></code></pre></td></tr></table></figure>
+
+<p>和上一句的搜索结果相似，三位选手都找到了正确的句子，<code>window_chunk</code> 选手的答案最标准。请为 <code>window_chunk</code> 选手的精彩表现鼓掌。</p>
+<h2 id="更多探索"><a href="#更多探索" class="headerlink" title="更多探索"></a>更多探索</h2><p>其实，RAG 的响应和很多因素相关，你可以多多尝试，看看结果有什么不同。比如，修改 <code>vector_search</code> 函数的 <code>limit</code> 参数，让向量数据库多返回几个句子，增加命中概率。或者增加 <code>generate_response</code> 函数的 <code>temperature</code> 参数，看看 RAG 的响应如何变化。还有提示词，它直接影响大模型如何回答。</p>
+<p>另外，你还可以基于本应用，开发其他功能，比如鲁迅作品智能问答功能，解答关于鲁迅作品的问题。或者鲁迅作品推荐功能，输入你想要阅读的作品类型，让 RAG 为你做推荐。玩法多多，祝你玩得开心。</p>
+<h2 id="藏宝图"><a href="#藏宝图" class="headerlink" title="藏宝图"></a>藏宝图</h2><p>老规矩，推荐一些资料供你参考。<br><a target="_blank" rel="noopener" href="https://chunkviz.up.railway.app/">ChunkViz</a> 是一个在线网站，提供分块可视化功能。</p>
+<p>想了解 RAG 更多有趣应用，可以看看这个视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1da4y1k78p/?spm_id_from=333.337.search-card.all.click&vd_source=ad92e3138da83a643ab3f5883c7664c7">当我开发出史料检索RAG应用，正史怪又该如何应对？</a>。想了解更多技术细节，看这里： <a target="_blank" rel="noopener" href="https://zilliz.com.cn/blog/milvus-rag-bilibili">揭秘「 B 站最火的 RAG 应用」是如何炼成的</a>。</p>
+<p>想了解更多分块技术，可以阅读<a target="_blank" rel="noopener" href="https://zilliz.com.cn/blog/guide-to-chunking-sreategies-for-rag">检索增强生成（RAG）的分块策略指南</a>和<a target="_blank" rel="noopener" href="https://safjan.com/from-fixed-size-to-nlp-chunking-a-deep-dive-into-text-chunking-techniques/">从固定大小到NLP分块 - 文本分块技术的深入研究</a>两篇文章。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>鲁迅作品集数据基于 <a target="_blank" rel="noopener" href="https://github.com/sun510001/luxun_dataset">luxun_dataset</a> ，增加了一些字段。<code>luxun_sample.json</code> 为鲁迅部分作品，方便试用。<code>luxun.json</code> 为完整的鲁迅作品集。
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>LlamaIndex 是一个用于构建带有上下文增强功能的生成式 AI 应用的框架，支持大型语言模型（LLMs）。
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>鲁迅到底说没说？RAG之分块</div>
+      <div>http://example.com/2024/10/29/鲁迅到底说没说？RAG之分块/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>爱写作的CAE工程师</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月29日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/11/%E9%97%A8%E5%A4%96%E6%B1%89%E5%A6%82%E4%BD%95%E2%80%9C%E5%86%92%E5%85%85%E2%80%9D%E4%B8%93%E5%AE%B6%EF%BC%9F%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E4%B9%8B%E7%A8%80%E7%96%8F%E5%90%91%E9%87%8F/" title="门外汉如何“冒充”专家？向量嵌入之稀疏向量">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">门外汉如何“冒充”专家？向量嵌入之稀疏向量</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/11/%E5%AD%99%E6%82%9F%E7%A9%BA-%E7%BA%A2%E6%A5%BC%E6%A2%A6-%E8%A5%BF%E6%B8%B8%E8%AE%B0-%EF%BC%9F%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5%E4%B9%8B%E7%A8%A0%E5%AF%86%E5%90%91%E9%87%8F/" title="孙悟空 + 红楼梦 - 西游记 = ？向量嵌入之稠密向量">
+                        <span class="hidden-mobile">孙悟空 + 红楼梦 - 西游记 = ？向量嵌入之稠密向量</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

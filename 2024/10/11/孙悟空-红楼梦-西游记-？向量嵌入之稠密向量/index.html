@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161007773.png">
 <meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161023693.png">
 <meta property="article:published_time" content="2024-10-11T15:00:08.000Z">
-<meta property="article:modified_time" content="2025-01-09T15:02:15.897Z">
+<meta property="article:modified_time" content="2025-01-19T03:27:32.415Z">
 <meta property="article:author" content="江浩">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202409161007773.png">
@@ -267,7 +267,9 @@
                 <p>一起来开个脑洞，如果孙悟空穿越到红楼梦的世界，他会成为谁？贾宝玉，林黛玉，还是薛宝钗？这看似一道文学题，但是我们不妨用数学方法来求解：<code>孙悟空 + 红楼梦 - 西游记 = ？</code></p>
 <p>文字也能做运算？当然不行，但是把文字转换成数字之后，就可以用来计算了。而这个过程，叫做 “向量嵌入”。为什么要做向量嵌入？因为具有语义意义的数据，比如文本或者图像，人可以分辨相关程度，但是无法量化，更不能计算。比如，对于一组词“孙悟空、猪八戒、沙僧、西瓜、苹果、香蕉“，我会把“孙悟空、猪八戒、沙僧”分成一组，“西瓜、苹果、香蕉”分成另一组。但是，如果进一步提问，“孙悟空”是和“猪八戒”更相关，还是和“沙僧”更相关呢？这很难回答。</p>
 <p>而把这些信息转换成向量后，相关程度就可以通过它们在向量空间中的距离量化。甚至于，我们可以做 <code>孙悟空 + 红楼梦 - 西游记 = ？</code> 这样的脑洞数学题。</p>
+<blockquote>
 <p>本文首发于 Zilliz 公众号。文中代码的 Notebook 在<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1VtPt-6Y_hhxKn9uB4AMNFg?pwd=7zv9">这里</a>下载。</p>
+</blockquote>
 <h2 id="文字是怎么变成向量的"><a href="#文字是怎么变成向量的" class="headerlink" title="文字是怎么变成向量的"></a>文字是怎么变成向量的</h2><p>怎么把文字变成向量呢？首先出现的是词向量，其中的代表是 word2vec 模型。它先准备一张词汇表，给每个词随机赋予一个向量，然后利用大量语料，通过 CBOW（Continuous Bag-of-Words）和 Skip-Gram 两种方法训练模型，不断优化字词的向量。</p>
 <p>CBOW 使用上下文（周围的词）预测目标词<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="严格来说，“目标词”不是单词而是“token”。token 是组成句子的基本单元。对于英文来说，token可以简单理解为单词，还可能是子词（subword）或者标点符号，比如“unhappiness” 可能会被分割成“un”和“happiness“。对于汉字来说，则是字、词或者短语，汉字不会像英文单词那样被分割。">[1]</span></a></sup>，而 Skip-Gram 则相反，通过目标词预测它的上下文。举个例子，对于“我爱吃冰淇淋”这个句子，CBOW方法已知上下文“我爱“和”冰淇淋”，计算出中间词的概率，比如，“吃”的概率是90%，“喝”的概率是7%，“玩”的概率是3%。然后再使用损失函数预测概率与实际概率的差异，最后通过反向传播算法，调整词向量模型的参数，使得损失函数最小化。训练词向量模型的最终目的，是捕捉词汇之间的语义关系，使得相关的词在向量空间中距离更近。</p>
 <p>打个比方，最初的词向量模型就像一个刚出生的孩子，对字词的理解是模糊的。父母在各种场景下和孩子说话，时不时考一考孩子，相当于用语料库训练模型。只不过训练模型的过程是不断迭代神经网络的参数，而教孩子说话，则是改变大脑皮层中神经元突触的连接。</p>
@@ -408,7 +410,7 @@
 <li><a target="_blank" rel="noopener" href="https://github.com/ymcui/Chinese-BERT-wwm">Chinese-BERT-wwm</a> 是哈工大讯飞联合实验室（HFL）发布的中文 BERT 模型。</li>
 <li><a target="_blank" rel="noopener" href="https://milvus.io/docs/embeddings.md">pymilvus.model</a> 是 PyMilvus 客户端库的一个子包，提供多种嵌入模型的封装，用于生成向量嵌入，简化了文本转换过程。</li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>严格来说，“目标词”不是单词而是“token”。token 是组成句子的基本单元。对于英文来说，token可以简单理解为单词，还可能是子词（subword）或者标点符号，比如“unhappiness” 可能会被分割成“un”和“happiness“。对于汉字来说，则是字、词或者短语，汉字不会像英文单词那样被分割。
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>严格来说，“目标词”不是单词而是“token”。token 是组成句子的基本单元。对于英文来说，token可以简单理解为单词，还可能是子词（subword）或者标点符号，比如“unhappiness” 可能会被分割成“un”和“happiness“。对于汉字来说，则是字、词或者短语，汉字不会像英文单词那样被分割。
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
@@ -497,9 +499,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/07/%E5%86%99%E7%BB%99%E6%96%B0%E8%AF%BB%E8%80%85%E7%9A%84%E5%AF%BC%E8%88%AA/" title="写给新读者的导航">
+                      <a href="/2024/10/29/%E9%B2%81%E8%BF%85%E5%88%B0%E5%BA%95%E8%AF%B4%E6%B2%A1%E8%AF%B4%EF%BC%9FRAG%E4%B9%8B%E5%88%86%E5%9D%97/" title="鲁迅到底说没说？RAG之分块">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">写给新读者的导航</span>
+                        <span class="hidden-mobile">鲁迅到底说没说？RAG之分块</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
