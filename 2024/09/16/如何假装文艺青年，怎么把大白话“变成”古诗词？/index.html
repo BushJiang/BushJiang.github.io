@@ -13,7 +13,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="爱写作的CAE工程师">
+  <meta name="author" content="江浩">
   <meta name="keywords" content="">
   
     <meta name="description" content="午后细雨绵绵，你独倚窗边，思绪万千，于是拿出手机，想发一条朋友圈抒发情怀，随便展示一下文采。奈何好不容易按出几个字，又全部删除。“今天的雨好大”展示不出你的文采。你灵机一动，如果有一个搜索引擎，能搜索出和“今天的雨好大”意思相近的古诗词，岂不妙哉！ 使用向量数据库就可以实现，代码还不到100行，一起来试试吧。我们会从零开始安装向量数据库 Milvus，向量化古诗词数据集，然后创建集合，导入数据，创">
@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202408232208878.jpeg">
 <meta property="article:published_time" content="2024-09-16T02:11:12.000Z">
-<meta property="article:modified_time" content="2025-01-19T03:26:58.242Z">
+<meta property="article:modified_time" content="2025-01-19T04:02:32.521Z">
 <meta property="article:author" content="江浩">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picgo233.oss-cn-hangzhou.aliyuncs.com/img/202408232208878.jpeg">
@@ -70,7 +70,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":4},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -207,7 +207,7 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        爱写作的CAE工程师
+        江浩
       </span>
     
     
@@ -250,6 +250,16 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
 
@@ -432,7 +442,7 @@
   
     <span>></span>
     
-  <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A7%98/" class="category-chain-item">原理探秘</a>
+  <a href="/categories/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/%E8%B6%A3%E5%91%B3%E5%BA%94%E7%94%A8/" class="category-chain-item">趣味应用</a>
   
   
 
@@ -461,7 +471,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>爱写作的CAE工程师</div>
+          <div>江浩</div>
         </div>
       
       
@@ -520,16 +530,6 @@
 
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
 
     </div>
   </div>
